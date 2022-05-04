@@ -69,7 +69,7 @@ export default NextAuth({
   ],
   callbacks: {
     async redirect({ url, baseUrl }) {
-      return 'http://localhost:3000/account'
+      return `${baseUrl}/account`
     },
     async session({ session, token }) {
       session.userId = token.sub;
