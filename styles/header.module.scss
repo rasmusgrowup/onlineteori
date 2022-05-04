@@ -3,7 +3,7 @@
 .main {
   display: flex;
   border-bottom: 1px solid var(--line);
-  padding: 1.8rem 2.5rem;
+  padding: 1.8rem 2.5rem 1.8rem;
   position: fixed;
   width: 100%;
 }
@@ -77,8 +77,8 @@
   position: fixed;
   left: 0;
   top: 0;
-  padding: 2rem 2.5rem 2rem 1.5rem;
-  width: 320px;
+  padding: 2rem 1.5rem 2rem 1.5rem;
+  width: 300px;
 }
 
 .top {
@@ -91,7 +91,7 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  padding-right: 2.5rem;
+  padding-right: 1.5rem;
 }
 
 .list {
