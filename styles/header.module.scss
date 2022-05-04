@@ -1,0 +1,182 @@
+@import 'core.scss';
+
+.main {
+  display: flex;
+  border-bottom: 1px solid var(--bg);
+  padding: 1.8rem 2.5rem;
+  position: fixed;
+  width: 100%;
+}
+
+.logo {
+  align-items: center;
+  display: flex;
+  margin-right: 3rem;
+  width: 8rem;
+}
+
+.nav {
+  align-items: center;
+  display: flex;
+  font-weight: 500;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.dropdowns,
+.buttons {
+  display: flex;
+}
+
+.navItem {
+  align-items: center;
+  display: flex;
+  margin-right: 3rem;
+
+  span {
+    margin-right: 0.25rem;
+  }
+}
+
+.contactUs {
+  background-color: var(--bg);
+  border-radius: $radius;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: normal;
+  margin-right: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  transition: transform 0.3s;
+}
+
+.signIn,
+.signOut {
+  background-color: var(--main);
+  border: none;
+  border-radius: $radius;
+  color: var(--white);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: normal;
+  padding: 0.6rem 1.2rem;
+  transition: transform 0.3s;
+}
+
+.signOut {
+  background-color: var(--sec);
+}
+
+.contactUs:hover,
+.signIn:hover {
+  //transform: scale(0.95);
+  //transition: transform 0.3s;
+}
+
+.sidebar {
+  bottom: 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 3rem 2.5rem 3rem 1.5rem;
+  width: 320px;
+}
+
+.top {
+  margin-left: 1rem;
+}
+
+.inner {
+  border-right: 1px solid var(--bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding-right: 2.5rem;
+}
+
+.list {
+  height: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 4rem 0;
+}
+
+.listItem {
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  border-radius: $radius;
+  color: var(--main);
+  display: flex;
+  font-size: 1em;
+  margin: 0;
+  margin-bottom: 0.25rem;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  text-align: left;
+
+  svg {
+    height: 15px;
+    width: 15px;
+  }
+
+  span {
+    margin-left: 1rem;
+  }
+
+  &:hover {
+    background-color: var(--bg);
+    color: var(--sec);
+    cursor: pointer;
+
+    svg g path,
+    svg path {
+      stroke: var(--sec);
+    }
+  }
+}
+
+.active {
+  background-color: var(--bg);
+  color: var(--sec);
+
+  svg g path {
+    stroke: var(--sec);
+  }
+}
+
+.signOutSidebar,
+.settings {
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  border-radius: $radius;
+  color: var(--main);
+  display: flex;
+  font-size: 1em;
+  margin: 0;
+  margin-bottom: 0.25rem;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  text-align: left;
+
+  svg {
+    height: 15px;
+    width: 15px;
+  }
+
+  span {
+    margin-left: 1rem;
+  }
+
+  &:hover {
+    background-color: var(--bg);
+    color: var(--sec);
+    cursor: pointer;
+
+    svg g path,
+    svg path {
+      stroke: var(--sec);
+    }
+  }
+}

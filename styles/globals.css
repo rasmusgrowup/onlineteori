@@ -1,0 +1,43 @@
+html,
+body {
+  background-color: var(--white);
+  color: var(--main);
+  font-family:
+    'Work Sans',
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica Neue,
+    sans-serif;
+  font-size: 17px;
+  margin: 0;
+  min-height: 100vh;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  margin: 0;
+}
+
+:root {
+  --main: #001BAD;
+  --sec: #EA00B4;
+  --bg: #F7F8FF;
+  --black: #000;
+  --white: #fff;
+}

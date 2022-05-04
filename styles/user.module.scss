@@ -1,0 +1,32 @@
+@import 'core.scss';
+
+.container {
+  align-items: center;
+  display: flex;
+  position: relative;
+  z-index: 9;
+}
+
+.userInfo span {
+  display: block;
+  line-height: 1;
+  margin: 0;
+  margin-left: 1rem;
+}
+
+.profilePic {
+  border-radius: 50%;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+
+.navn {
+  font-size: 1.1em;
+  font-weight: 500;
+}
+
+.konto {
+  font-size: 0.8em;
+  opacity: 0.5;
+}

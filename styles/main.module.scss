@@ -1,0 +1,28 @@
+@import 'core.scss';
+
+.main {
+  padding-top: 6rem;
+}
+
+.mainBackend {
+  margin: 0 0 0 auto;
+  min-height: 100vh;
+  padding-top: 3rem;
+  padding-right: 2rem;
+  width: calc(100vw - 320px);
+}
+
+.backendInner {
+  min-height: calc(100vh - 3rem - 50px);
+}
+
+.footerBackend {
+  height: 50px;
+  margin: 0 0 0 auto;
+  width: calc(100vw - 320px);
+}
+
+.copyright {
+  opacity: 0.5;
+  font-size: 0.8em;
+}
