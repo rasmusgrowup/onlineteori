@@ -4,8 +4,11 @@
   left: 0;
   height: 100%;
   overflow-y: scroll;
+  padding: 2rem 0;
   position: absolute;
   top: 0;
+  max-width: calc(320px - 2rem);
+  width: 100%;
 
   .titel {
     font-size: 1.2em;

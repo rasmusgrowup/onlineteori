@@ -58,7 +58,7 @@ export default function TeoriNav() {
   return (
     <>
       <nav className={scss.teoriNav}>
-        <motion.h1 initial="initial" animate="animate" variants={list} className={scss.titel}>Dokumentation</motion.h1>
+        <motion.h1 initial="initial" animate="animate" variants={list} className={scss.titel}>Teorilære</motion.h1>
         <div className={scss.inner}>
           <motion.ul initial="initial" animate="animate" variants={list} className={scss.subjectList}>
             { data.subjects.map((subject) => (
