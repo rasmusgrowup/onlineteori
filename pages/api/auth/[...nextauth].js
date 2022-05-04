@@ -69,7 +69,7 @@ export default NextAuth({
   ],
   callbacks: {
     async redirect({ url, baseUrl }) {
-      return `${baseUrl}/account`
+      return `${process.env.NEXTAUTH_URL}/account`
     },
     async session({ session, token }) {
       session.userId = token.sub;
