@@ -21,6 +21,7 @@ function User({ src, navn, konto }) {
             height='55'
             objectFit='cover'
             objectPosition='center'
+            priority='true'
           />
         </div>
         <div className={scss.userInfo}>

@@ -2,7 +2,7 @@
 
 .main {
   display: flex;
-  border-bottom: 1px solid var(--bg);
+  border-bottom: 1px solid var(--line);
   padding: 1.8rem 2.5rem;
   position: fixed;
   width: 100%;
@@ -86,7 +86,7 @@
 }
 
 .inner {
-  border-right: 1px solid var(--bg);
+  border-right: 1px solid var(--line);
   display: flex;
   flex-direction: column;
   justify-content: space-between;

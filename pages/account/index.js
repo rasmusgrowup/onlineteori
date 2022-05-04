@@ -1,7 +1,7 @@
 //Components
 import BackendLayout from '../../components/BackendLayout'
 import User from '../../components/User'
-import Stats from '../../components/Stats'
+import Continue from '../../components/Continue'
 
 // Session
 import { getSession } from 'next-auth/react';
@@ -55,7 +55,7 @@ export default function AccountPage({ user }) {
         navn={user.navn}
         konto={user.email}
       />
-      <Stats />
+      <Continue />
     </BackendLayout>
   )
 }

@@ -1,12 +1,17 @@
 // SCSS
-import scss from '../styles/stats.module.scss'
+import scss from '../styles/continue.module.scss'
 
 // Components
 import Image from "next/image"
 import { motion } from "framer-motion"
-import IconStatistik from '../components/IconStatistik'
+import IconThumbsUp from '../components/IconThumbsUp'
 import IconBeskeder from '../components/IconBeskeder'
 import { PLACEHOLDER } from '../lib/constants.js'
+
+//Placeholders
+import Scribble1 from '../public/placeholders/Scribble_1.png'
+import Scribble2 from '../public/placeholders/Scribble_2.png'
+import Scribble3 from '../public/placeholders/Scribble_3.png'
 
 const cards = {
   initial: {
@@ -28,13 +33,13 @@ const cards = {
   }
 }
 
-export default function Stats() {
+export default function Continue() {
   return (
     <>
       <section className={scss.container}>
         <motion.header animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.45}} initial={{ y: 30, opacity: 0 }} className={scss.header}>
-          <IconStatistik />
-          <span>Statistik</span>
+          <IconThumbsUp />
+          <span>Fortsæt, hvor du slap</span>
         </motion.header>
         <div className={scss.inner}>
           <motion.div
@@ -45,7 +50,7 @@ export default function Stats() {
             whileTap='tap'
             className={scss.card}>
             <div className={scss.cardImage}>
-              <Image src={PLACEHOLDER} layout='fill'/>
+              <Image src={Scribble1} layout='fill'/>
             </div>
             <div className={scss.cardText}>Du har gennemført 22% af teorihåndbogen</div>
           </motion.div>
@@ -57,7 +62,7 @@ export default function Stats() {
             whileTap='tap'
             className={scss.card}>
             <div className={scss.cardImage}>
-              <Image src={PLACEHOLDER} layout='fill'/>
+              <Image src={Scribble2} layout='fill'/>
             </div>
             <div className={scss.cardText}>Du har gennemført 8 teoriprøver</div>
           </motion.div>
@@ -69,7 +74,7 @@ export default function Stats() {
             whileTap='tap'
             className={scss.card}>
             <div className={scss.cardImage}>
-              <Image src={PLACEHOLDER} layout='fill'/>
+              <Image src={Scribble3} layout='fill'/>
             </div>
             <div className={scss.cardText}>75% af dine fejl er indenfor teori om hastighed</div>
           </motion.div>

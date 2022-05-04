@@ -55,12 +55,12 @@ export default function Sidebar() {
           <div className={headerStyles.top}>
             <Logo />
           </div>
-          <motion.ul animate={{ opacity: 1 }} initial={{ opacity: 0}} className={headerStyles.list}>
-            <li className={`${headerStyles.listItem} ${router.pathname == '/account' ? `${headerStyles.active}` : ''}`}>
+          <ul className={headerStyles.list}>
+            <li className={`${headerStyles.listItem} ${router.pathname == '/account' ? `${headerStyles.active}` : ''}`} onClick={() => router.push('/account')}>
               <IconOverblik />
               <span>Overblik</span>
             </li>
-            <li className={headerStyles.listItem}>
+            <li className={`${headerStyles.listItem} ${router.pathname == '/account/teori' ? `${headerStyles.active}` : ''}`} onClick={() => router.push('/account/teori')}>
               <IconTeori />
               <span>Teori</span>
             </li>
@@ -84,11 +84,11 @@ export default function Sidebar() {
               <IconBeskeder />
               <span>Beskeder</span>
             </li>
-          </motion.ul>
-          <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0}} className={headerStyles.bottom}>
+          </ul>
+          <div className={headerStyles.bottom}>
             <Settings />
             <SignOut />
-          </motion.div>
+          </div>
         </div>
       </header>
     </>

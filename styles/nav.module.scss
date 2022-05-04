@@ -1,0 +1,50 @@
+@import 'core.scss';
+
+.teoriNav {
+  left: 0;
+  height: 100%;
+  overflow-y: scroll;
+  position: absolute;
+  top: 0;
+
+  .titel {
+    font-size: 1.2em;
+    font-weight: 500;
+  }
+
+  .subjectTitel {
+    font-size: 1em;
+    font-weight: 400;
+    margin: 0;
+  }
+
+  .subjectList {
+    border-left: 1px solid var(--line);
+    line-height: 1.75;
+    padding: 0;
+    padding-left: 14px;
+  }
+
+  .subject {
+    margin-bottom: 1rem;
+  }
+
+  .chapterList {
+    list-style: none;
+    font-size: 0.9em;
+    padding: 0;
+    padding-left: 1rem;
+  }
+
+  .chapter {
+    font-weight: 300;
+    opacity: 0.25;
+  }
+
+  .subjectTitel:hover,
+  .chapter:hover {
+    cursor: pointer;
+    color: var(--sec);
+    opacity: 1;
+  }
+}
