@@ -62,11 +62,11 @@ export default function TeoriNav() {
         <div className={scss.inner}>
           <motion.ul initial="initial" animate="animate" variants={list} className={scss.subjectList}>
             { data.subjects.map((subject) => (
-              <motion.li variants={subjects} className={scss.subject}>
+              <motion.li variants={subjects} className={scss.subject} key={subject.id}>
                 <h2 className={scss.subjectTitel}>{subject.titel}</h2>
                 <ul className={scss.chapterList}>
                   { subject.chapters.map((chapter) => (
-                    <li className={scss.chapter}>
+                    <li className={scss.chapter} key={chapter.id}>
                       {chapter.titel}
                     </li>
                   ))}
