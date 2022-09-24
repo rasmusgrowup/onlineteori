@@ -2,7 +2,6 @@
 
 .mainHeader {
 	background-color: white;
-	//height: 100%;
 	left: 0;
 	position: absolute;
 	top: 0;
@@ -38,7 +37,7 @@
 			flex-direction: column;
 			height: 100%;
 			justify-content: space-between;
-			padding: 0.5em 1em;
+			padding: 1em;
 		}
 	}
 }
@@ -57,7 +56,11 @@
 }
 
 .mainLogo {
-	width: 9em;
+	width: 8em;
+
+	@media (max-width: $m) {
+		width: 7em;
+	}
 }
 
 .toggle {
