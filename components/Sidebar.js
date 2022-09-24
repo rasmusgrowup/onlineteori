@@ -77,8 +77,8 @@ export default function Sidebar() {
 
 	return (
 		<header className={sidebar.mainSidebar}>
-			<BackendSidebar/>
-      <div className={sidebar.toggle} onClick={handleDisplayMenu}>
+			<BackendSidebar displayMenu={handleMenu}/>
+      <div className={ handleMenu ? `${sidebar.toggle} ${sidebar.closeIcon}` : `${sidebar.toggle} ${sidebar.menuIcon}`} onClick={handleDisplayMenu}>
         { !handleMenu ? <MenuIcon /> : <CloseIcon /> }
       </div>
 		</header>
