@@ -10,8 +10,8 @@ import { useState } from 'react';
 import { useSession, signIn, signOut } from "next-auth/react";
 
 // Import Icons for menu
-import MenuIcon from '../components/icons/MenuIcon';
-import CloseIcon from '../components/icons/CloseIcon';
+import MenuIcon from '../components/Icons/MenuIcon';
+import CloseIcon from '../components/Icons/CloseIcon';
 
 function SignInOut() {
   return (
