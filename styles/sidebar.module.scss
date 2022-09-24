@@ -109,6 +109,10 @@
 	position: fixed;
 	z-index: 10;
 	width: 50px;
+
+	@media (min-width: $m) {
+		display: none;
+	}
 }
 
 .menuIcon {
