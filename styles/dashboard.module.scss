@@ -1,7 +1,7 @@
 @import 'sizes.scss';
 
 .main {
-	height: 200vh;
+	height: 100vh;
 	margin: 0 auto;
 	margin-right: 0;
 	max-width: calc(100% - $sidebarWidth);
@@ -13,8 +13,9 @@
 	}
 }
 
-.userContainer {
+.header {
 	border-bottom: 1px solid var(--lightGrey);
+	margin-bottom: 1.5em;
 	padding-bottom: 0.5em;
 }
 
@@ -42,5 +43,44 @@
 
 	button {
 		margin-top: 0.7em;
+	}
+}
+
+// Proever styling
+.newTest {
+	align-items: center;
+	background-color: white;
+	border-radius: 25px;
+	box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.05);
+	-webkit-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.05);
+	-moz-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.05);
+	cursor: pointer;
+	display: inline-flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 1.5em;
+	max-width: $s;
+
+	&:hover {
+		box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.1);
+		-webkit-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.1);
+		-moz-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.1);
+	}
+}
+
+.plusContainer {
+	width: 1.75em;
+	align-self: flex-end;
+}
+
+.newTest p {
+	color: var(--lightBlue);
+	font-size: 2em;
+	font-weight: bold;
+	line-height: 1.25;
+	margin: 0;
+
+	strong {
+		color: var(--darkBlue);
 	}
 }

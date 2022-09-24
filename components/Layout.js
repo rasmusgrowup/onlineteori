@@ -5,7 +5,7 @@ import layout from '../styles/layout.module.scss';
 export default function Layout({ children }) {
 	return (
 		<>
-			<main className={layout.main}>{children}</main>
+			<div className={layout.main}>{children}</div>
 		</>
 	)
 }

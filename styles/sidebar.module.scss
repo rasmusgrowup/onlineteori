@@ -21,11 +21,12 @@
 		display: none;
 		height: auto;
 		left: auto;
-		max-width: calc(100% - 2em);
+		max-width: $s;
 		padding-bottom: 1em;
 		position: absolute;
 		right: 1em;
 		top: 4.5em;
+		width: calc(100% - 2em);
 	}
 }
 
@@ -115,10 +116,4 @@
 	@media (min-width: $m) {
 		display: none;
 	}
-}
-
-.menuIcon {
-	//box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.14);
-	//-webkit-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.14);
-	//-moz-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.14);
 }

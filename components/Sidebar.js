@@ -24,31 +24,31 @@ function BackendSidebar({ displayMenu }) {
   const { data: session, status } = useSession();
 
   return (
-    <div className={ displayMenu ? `${sidebar.displaySidebar} ${sidebar.sidebar}` : `${sidebar.hideSidebar} ${sidebar.sidebar}`}>
+    <div className={ displayMenu ? `${sidebar.displaySidebar} ${sidebar.sidebar}` : `${sidebar.sidebar}`}>
       <div className={sidebar.mainLogo}>
         <Image src={Logo} layout='responsive' priority='true' quality='100'/>
       </div>
       <div className={sidebar.sidebarMenu} >
         <div className={sidebar.inner}>
-          <Link href='/dashboard'>
+          <Link href='/dashboard' passHref>
             <a className={router.pathname === '/dashboard' ? `${sidebar.sidebarItem} ${sidebar.active}` : `${sidebar.sidebarItem}`}>
               <Overblik />
               <span>Hjem</span>
             </a>
           </Link>
-          <Link href='/dashboard'>
+          <Link href='/dashboard' passHref>
             <a className={sidebar.sidebarItem}>
               <Teori />
               <span>Teori</span>
             </a>
           </Link>
-          <Link href='/dashboard'>
-            <a className={sidebar.sidebarItem}>
+          <Link href='/dashboard/proever' passHref>
+            <a className={router.pathname === '/dashboard/proever' ? `${sidebar.sidebarItem} ${sidebar.active}` : `${sidebar.sidebarItem}`}>
               <Tests />
               <span>Prøver</span>
             </a>
           </Link>
-          <Link href='/dashboard/profile'>
+          <Link href='/dashboard/profile' passHref>
             <a className={router.pathname === '/dashboard/profile' ? `${sidebar.sidebarItem} ${sidebar.active}` : `${sidebar.sidebarItem}`}>
               <Settings />
               <span>Profil</span>
@@ -76,11 +76,11 @@ export default function Sidebar() {
   const handleDisplayMenu = () => {setHandleMenu(!handleMenu);}
 
 	return (
-		<header className={sidebar.mainSidebar}>
+		<>
 			<BackendSidebar displayMenu={handleMenu}/>
-      <div className={ handleMenu ? `${sidebar.toggle} ${sidebar.closeIcon}` : `${sidebar.toggle} ${sidebar.menuIcon}`} onClick={handleDisplayMenu}>
+      <div className={sidebar.toggle} onClick={handleDisplayMenu}>
         { !handleMenu ? <MenuIcon /> : <CloseIcon /> }
       </div>
-		</header>
+		</>
 	)
 }

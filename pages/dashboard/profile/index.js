@@ -1,13 +1,13 @@
 import { gql } from 'graphql-request';
 import { useForm } from 'react-hook-form';
 import { getSession } from 'next-auth/react';
-import style from '../../styles/dashboard.module.scss' // Dashboard styling
-import component from '../../styles/components.module.scss' // Component styling
+import style from '../../../styles/dashboard.module.scss' // Dashboard styling
+import component from '../../../styles/components.module.scss' // Component styling
 import Image from "next/image";
-import Sidebar from '../../components/Sidebar'
+import Sidebar from '../../../components/Sidebar'
 
 
-import { hygraphClient } from '../../lib/hygraph';
+import { hygraphClient } from '../../../lib/hygraph';
 
 const GetUserProfileById = gql`
 query GetUserProfileById($id: ID!) {
