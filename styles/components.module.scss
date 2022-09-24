@@ -1,0 +1,23 @@
+@import 'sizes.scss';
+
+.lightButton {
+	background-color: var(--lightGrey);
+	border: none;
+	border-radius: 3px;
+	color: var(--darkBlue);
+	cursor: pointer;
+	font-size: 14px;
+	height: 40px;
+	padding: 0 1.75em;
+}
+
+.darkButton {
+	background-color: var(--darkBlue);
+	border: none;
+	border-radius: 3px;
+	color: var(--white);
+	cursor: pointer;
+	font-size: 14px;
+	height: 40px;
+	padding: 0 1.75em;
+}

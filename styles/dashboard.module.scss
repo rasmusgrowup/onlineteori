@@ -1,0 +1,42 @@
+@import 'sizes.scss';
+
+.main {
+	height: 100vh;
+	margin: 0 auto;
+	margin-right: 0;
+	max-width: calc(100% - $sidebarWidth);
+	padding-bottom: 2rem;
+	padding-left: 2rem;
+	padding-top: 3rem;
+
+	@media (max-width: $m) {
+		max-width: 100%;
+	}
+}
+
+.userForm {
+	display: flex;
+}
+
+.userPic {
+	border-radius: 60px;
+	height: 120px;
+	overflow: hidden;
+	width: 120px;
+}
+
+.form {
+	font-size: 1.2em;
+	margin-left: 1em;
+
+	input {
+		border: 0px;
+		border-bottom: 1px solid var(--lightGrey);
+		font-size: 1em;
+		display: block;
+	}
+
+	button {
+		margin-top: 0.7em;
+	}
+}

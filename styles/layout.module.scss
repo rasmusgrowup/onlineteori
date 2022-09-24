@@ -1,0 +1,16 @@
+@import 'sizes.scss';
+
+.hero {
+	align-content: center;
+	display: grid;
+	justify-content: center;
+	min-height: 85vh;
+	padding: 0 1em;
+	padding-top: 70px;
+}
+
+.centerText {
+	text-align: center;
+	margin: 0 auto;
+	max-width: $s;
+}

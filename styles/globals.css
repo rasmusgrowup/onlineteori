@@ -1,0 +1,40 @@
+html,
+body {
+  color:  var(--darkBlue);
+  padding: 0;
+  margin: 0;
+  font-family: neue-haas-grotesk-display, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-size: 17px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --white: white;
+  --darkBlue: #010B36;
+  --lightGrey: #F4F4F4;
+  --light: rgb(250, 250, 250);
+  --linkBlue: #0A25D9;
+  --pureBlue: #1835F8;
+  --grey: rgb(177, 177, 177);
+}
+
+/*
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: white;
+    background: black;
+  }
+}
+*/

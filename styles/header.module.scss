@@ -1,0 +1,155 @@
+@import 'sizes.scss';
+
+.mainHeader {
+	background-color: white;
+	//height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+
+	@media (max-width: $m) {
+		position: fixed;
+
+		// Hide navigation
+		.hideMenu {
+			display: inital;
+			height: 70px;
+
+			.menu,
+			.backend {
+				display: none;
+			}
+		}
+	}
+
+	.inner {
+		align-items: center;
+		display: flex;
+		height: 70px;
+		justify-content: space-between;
+		padding: 0 1em;
+		width: 100%;
+		z-index: 2;
+
+		@media (max-width: $m) {
+			align-items: flex-start;
+			border-bottom: 1px solid var(--lightGrey);
+			flex-direction: column;
+			height: 100%;
+			justify-content: space-between;
+			padding: 0.5em 1em;
+		}
+	}
+}
+
+.top {
+	align-items: center;
+	display: flex;
+	flex: 1;
+	justify-content: space-between;
+	width: 100%;
+	z-index: 10;
+
+	@media (max-width: $m) {
+		flex: initial;
+	}
+}
+
+.mainLogo {
+	width: 9em;
+}
+
+.toggle {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	height: 36px;
+	position: absolute;
+	right: 1em;
+	top: 1em;
+	width: 36px;
+	z-index: 10;
+
+	@media (min-width: $m) {
+		display: none;
+	}
+}
+
+
+.backend {
+	align-items: center;
+	display: flex;
+	flex: 1;
+	justify-content: flex-end;
+
+	@media (max-width: $m) {
+		align-items: flex-start;
+		display: flex;
+		flex: initial;
+		flex-direction: column;
+		padding-bottom: 1em;
+		padding-top: 1em;
+		width: 100%;
+
+		button {
+			border-radius: 6px;
+			font-size: 17px;
+			height: 3.25em;
+			margin: 0.2em auto;
+			width: 100%;
+		}
+	}
+}
+
+.menu {
+	align-items: center;
+	display: flex;
+	flex: 2;
+	justify-content: center;
+
+	.mainMenuList .active {
+		background-color: transparent;
+	}
+
+	@media (max-width: $m) {
+		align-items: flex-start;
+		background-color: white;
+		flex: initial;
+		width: 100%;
+
+		.mainMenuList {
+			display: initial;
+			font-size: 19px;
+			line-height: 4;
+			width: 100%;
+
+			li {
+				border-bottom: 1px solid var(--lightGrey);
+				margin: 0 0.5em;
+			}
+		}
+	}
+}
+
+.menu ul {
+	display: flex;
+	list-style: none;
+	padding: 0;
+
+	li {
+		margin: 0 1em;
+	}
+}
+
+.menuItem {
+	align-items: center;
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	margin: 0 1em;
+
+	&:hover {
+		color: var(--pureBlue);
+	}
+}

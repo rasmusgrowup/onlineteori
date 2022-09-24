@@ -1,0 +1,25 @@
+@import "sizes.scss";
+
+.user {
+	align-items: center;
+	display: flex;
+}
+
+.imageContainer {
+	border-radius: 45px;
+	height: 90px;
+	overflow: hidden;
+	width: 90px;
+}
+
+.info span {
+	display: block;
+	letter-spacing: 1px;
+	font-size: 14px;
+	margin-left: 1em;
+}
+
+.info .username {
+	color: var(--grey);
+	//font-style: italic;
+}

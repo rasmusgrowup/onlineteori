@@ -1,0 +1,31 @@
+@import "sizes.scss";
+
+.h1 {
+	font-size: 75px;
+	line-height: 1;
+	margin-top: 0;
+
+	@media (max-width: $m) {
+		font-size: 55px;
+	}
+}
+
+.gradient {
+	background: -webkit-linear-gradient(#EA00B4, #021698);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	display: block;
+}
+
+.p {
+	letter-spacing: 0.05em;
+}
+
+.link {
+	color: var(--linkBlue);
+
+	&:hover {
+		cursor: pointer;
+		text-decoration: underline;
+	}
+}
