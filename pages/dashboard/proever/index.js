@@ -9,7 +9,7 @@ import Sidebar from '../../../components/Sidebar'
 import Footer from '../../../components/Footer'
 
 import Image from 'next/image'
-import Plus from '../../../public/gradients/Plus.png' // Big plus gradient icon
+import Plus from '../../../public/gradients/plus.png' // Big plus gradient icon
 
 const GetUserProfileById = gql`
   query GetUserProfileById($id: ID!) {
