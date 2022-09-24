@@ -18,14 +18,14 @@
 		-webkit-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.14);
 		-moz-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.14);
 		border-radius: 25px;
-		bottom: 1.5em;
 		display: none;
 		height: auto;
 		left: auto;
 		max-width: calc(100% - 2em);
-		padding-bottom: 0;
+		padding-bottom: 1em;
+		position: absolute;
 		right: 1em;
-		top: auto;
+		top: 4.5em;
 	}
 }
 
@@ -103,14 +103,14 @@
 	align-items: center;
 	background-color: white;
 	border-radius: 25px;
-	bottom: 1.5em;
 	display: flex;
-	height: 50px;
+	height: 40px;
 	justify-content: center;
 	right: 1em;
-	position: fixed;
+	position: absolute;
+	top: 1em;
 	z-index: 10;
-	width: 50px;
+	width: 40px;
 
 	@media (min-width: $m) {
 		display: none;
@@ -118,7 +118,7 @@
 }
 
 .menuIcon {
-	box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.14);
-	-webkit-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.14);
-	-moz-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.14);
+	//box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.14);
+	//-webkit-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.14);
+	//-moz-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.14);
 }
