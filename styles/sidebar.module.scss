@@ -11,7 +11,7 @@
 	max-width: $sidebarWidth;
 	width: 100%;
 	z-index: 10;
-	//display: none;
+	display: none;
 }
 
 .mainLogo {
@@ -77,8 +77,15 @@
 }
 
 .toggle {
-	bottom: 1em;
-	left: 1em;
-	display: none;
+	align-items: center;
+	background-color: white;
+	bottom: 2em;
+	border-radius: 25px;
+	display: flex;
+	height: 50px;
+	justify-content: center;
+	left: 2em;
 	position: fixed;
+	z-index: 10;
+	width: 50px;
 } 
