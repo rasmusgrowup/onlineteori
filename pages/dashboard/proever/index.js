@@ -84,7 +84,7 @@ export default function Proever({ user }) {
           <h1>Seneste prøver</h1>
           <div className={style.testList}>
             {proever.map((proeve, i) => (
-              <div className={ proeve[0] == 'Bestået' ? `${style.testItem} ${style.passed}` : `${style.testItem}`}>
+              <div key={i} className={ proeve[0] == 'Bestået' ? `${style.testItem} ${style.passed}` : `${style.testItem}`}>
                 <div className={style.result}>{proeve[0]}</div>
                 <div className={style.score}>{proeve[1]}</div>
                 <div className={style.date}>{proeve[2]}</div>
