@@ -24,9 +24,9 @@
 		max-width: $s;
 		padding-bottom: 1em;
 		position: absolute;
-		right: 1em;
+		right: 0.7em;
 		top: 4.5em;
-		width: calc(100% - 2em);
+		width: calc(100% - 1.4em);
 	}
 }
 
@@ -107,7 +107,7 @@
 	display: flex;
 	height: 40px;
 	justify-content: center;
-	right: 1em;
+	right: calc(1em - 10px);
 	position: absolute;
 	top: 1em;
 	z-index: 10;
