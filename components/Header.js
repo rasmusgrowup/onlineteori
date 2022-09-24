@@ -10,12 +10,6 @@ import { useState } from 'react';
 import { useSession, signIn, signOut } from "next-auth/react";
 
 // Import Icons for menu
-import Overblik from '../components/icons/Overblik';
-import Settings from '../components/icons/Settings';
-import Teori from '../components/icons/Teori';
-import Tests from '../components/icons/Overblik';
-import Chat from '../components/icons/Chat';
-import SignOut from '../components/icons/SignOut';
 import MenuIcon from '../components/icons/MenuIcon';
 import CloseIcon from '../components/icons/CloseIcon';
 
