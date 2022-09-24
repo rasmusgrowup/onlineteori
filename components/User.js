@@ -17,9 +17,9 @@ function User({ src, navn, konto, username }) {
           />
         </div>
         <div className={style.info} >
-          <span className={style.name}>{navn}</span>
-          <span className={style.account}>{konto}</span>
-          <span className={style.username}>#{username}</span>
+          { navn && <span className={style.name}>{navn}</span>}
+          { konto && <span className={style.account}>{konto}</span>}
+          { username && <span className={style.username}>#{username}</span>}
         </div>
       </div>
     </>
@@ -28,8 +28,7 @@ function User({ src, navn, konto, username }) {
 
 User.defaultProps = {
   src: `${PROFILE_PLACEHOLDER}`,
-  navn: 'Anders Andersen',
-  konto: 'anders@andersen.dk'
+  navn: 'Anders Andersen'
 }
 
 export default User

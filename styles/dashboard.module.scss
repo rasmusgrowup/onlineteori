@@ -1,17 +1,21 @@
 @import 'sizes.scss';
 
 .main {
-	height: 100vh;
+	height: 200vh;
 	margin: 0 auto;
 	margin-right: 0;
 	max-width: calc(100% - $sidebarWidth);
-	padding-bottom: 2rem;
-	padding-left: 2rem;
-	padding-top: 3rem;
+	padding: 1.5em;
+	position: relative;
 
 	@media (max-width: $m) {
 		max-width: 100%;
 	}
+}
+
+.userContainer {
+	border-bottom: 1px solid var(--lightGrey);
+	padding-bottom: 0.5em;
 }
 
 .userForm {

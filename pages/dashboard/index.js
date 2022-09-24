@@ -5,6 +5,7 @@ import { getSession } from 'next-auth/react'; // Session
 import { hygraphClient } from '../../lib/hygraph'; // GraphCMS
 import { gql } from 'graphql-request'; // gql
 import Sidebar from '../../components/Sidebar'
+import Footer from '../../components/Footer'
 
 const GetUserProfileById = gql`
   query GetUserProfileById($id: ID!) {
@@ -49,13 +50,11 @@ export default function Dashboard({ user }) {
     <>
       <Sidebar />
       <section className={style.main}>
-        <h1>Hej, {user.username}</h1>
-        <User
-          navn={user.name}
-          src={user.userPic.url}
-          konto={user.email}
-          username={user.username}
-          />
+        <div className={style.userContainer}>
+          <User navn={user.name} src={user.userPic.url}/>
+        </div>
+        <h1>Velkommen tilbage, <br /> {user.name}</h1>
+        <Footer />
       </section>
     </>
   )
