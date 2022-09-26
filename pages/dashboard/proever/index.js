@@ -79,17 +79,35 @@ export default function Proever({ user }) {
         <header className={style.header}>
           <User navn={user.name} src={user.userPic.url}/>
         </header>
-        <NewTest />
-        <div className={style.testContainer}>
-          <h1>Seneste prøver</h1>
-          <div className={style.testList}>
-            {proever.map((proeve, i) => (
-              <div key={i} className={ proeve[0] == 'Bestået' ? `${style.testItem} ${style.passed}` : `${style.testItem}`}>
-                <div className={style.result}>{proeve[0]}</div>
-                <div className={style.score}>{proeve[1]}</div>
-                <div className={style.date}>{proeve[2]}</div>
+        <div className={style.grid}>
+          <div className={style.col1}>
+            <NewTest />
+            <div className={style.testContainer}>
+              <h2>Seneste 5 prøver</h2>
+              <div className={style.testList}>
+                {proever.slice(0, 5).map((proeve, i) => (
+                  <div key={i} className={ proeve[0] == 'Bestået' ? `${style.testItem} ${style.passed}` : `${style.testItem}`}>
+                    <div className={style.result}>{proeve[0]}</div>
+                    <div className={style.score}>{proeve[1]}</div>
+                    <div className={style.date}>{proeve[2]}</div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+          </div>
+          <div className={style.col2}>
+            <div className={style.recommendations}>
+              <h2>Anbefalinger</h2>
+              <div className={style.recommendation}>
+                <p>Du har bestået to tests i træk. Meget flot! Og din seneste score var 97/100.</p>
+              </div>
+              <div className={style.recommendation}>
+                <p>Vi anbefaler at du læser afsnittet om <span stlye={{ color: 'var(--linkBlue)'}}>højresving</span>, inden du tager flere prøver, da dine fejl ofte hører sker ved spørgsmål, der hører til den katagori.</p>
+              </div>
+              <div className={style.recommendation}>
+                <p>Vi anbefaler at du består fem test i streg, før du melder dig til en køreprøve.</p>
+              </div>
+            </div>
           </div>
         </div>
         <Footer />

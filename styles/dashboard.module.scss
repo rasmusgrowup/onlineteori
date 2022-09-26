@@ -1,6 +1,7 @@
 @import 'sizes.scss';
 
 .main {
+	float: right;
 	min-height: 100vh;
 	margin: 0 auto;
 	margin-right: 0;
@@ -8,6 +9,7 @@
 	padding: 1.5em;
 	padding-bottom: 6em;
 	position: relative;
+	width: 100%;
 
 	@media (max-width: $m) {
 		max-width: 100%;
@@ -50,6 +52,15 @@
 }
 
 // Proever styling
+.col1,
+.col2 {
+	align-items: flex-start;
+	display: inline-flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	vertical-align: top;
+}
+
 .newTest {
 	align-items: center;
 	background-color: white;
@@ -58,11 +69,12 @@
 	-webkit-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.05);
 	-moz-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.05);
 	cursor: pointer;
-	display: inline-flex;
+	display: flex;
 	flex-direction: column;
+	float: left;
 	justify-content: center;
-	padding: 1.5em;
 	max-width: $sm;
+	padding: 1.5em;
 
 	&:hover {
 		box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.1);
@@ -89,10 +101,12 @@
 }
 
 .testContainer {
+	display: block;
 	margin-top: 2em;
 	max-width: $sm;
+	width: 100%;
 
-	h1 {
+	h2 {
 		font-size: 21px;
 		margin-left: 1.5rem;
 	}
@@ -116,6 +130,8 @@
 	font-weight: bold;
 	justify-content: space-between;
 	line-height: 3;
+	max-width: $sm;
+	width: 100%;
 
 	@media (max-width: $m) {
 		font-size: 18px;
@@ -140,6 +156,37 @@
 	}
 }
 
-.passed .result {
+.passed {
 	color: var(--pureGreen);
+}
+
+.recommendations {
+	display: block;
+	margin-left: 4em;
+	max-width: $s;
+
+	@media (max-width: $m) {
+		margin-left: 0;
+		margin-top: 2em;
+	}
+
+	h2 {
+		font-size: 21px;
+		margin-left: 1.5rem;
+		margin-top: 0;
+	}
+
+	.recommendation {
+		background-color: white;
+		border-radius: 25px;
+		box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.05);
+		-webkit-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.05);
+		-moz-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.05);
+		margin-bottom: 1em;
+		padding: 1.5em;
+
+		p {
+			font-size: 19px;
+		}
+	}
 }
