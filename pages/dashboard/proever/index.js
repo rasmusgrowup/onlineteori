@@ -7,7 +7,7 @@ import { hygraphClient } from '../../../lib/hygraph'; // GraphCMS
 import { gql } from 'graphql-request'; // gql
 import Sidebar from '../../../components/Sidebar'
 import Footer from '../../../components/Footer'
-
+import { motion } from "framer-motion" // Animation library
 import Image from 'next/image'
 import Plus from '../../../public/gradients/plus.png' // Big plus gradient icon
 
@@ -49,12 +49,12 @@ export async function getServerSideProps(context) {
 
 function NewTest() {
   return (
-    <div className={style.newTest}>
+    <motion.div whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }} className={style.newTest}>
       <p><strong>Start en ny prøve.</strong> Du har taget 10 ud af 15 mulige prøver.</p>
       <div className={style.plusContainer}>
         <Image src={Plus} layout='responsive' quality='100' priority='true'/>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
@@ -97,14 +97,16 @@ export default function Proever({ user }) {
           </div>
           <div className={style.col2}>
             <div className={style.recommendations}>
-              <h2>Anbefalinger</h2>
               <div className={style.recommendation}>
-                <p>Du har bestået to tests i træk. Meget flot! Og din seneste score var 97/100.</p>
+                <h2>To i streg.</h2>
+                <p>Du har bestået to tests i træk. Din seneste score var 97/100. Meget flot!</p>
               </div>
               <div className={style.recommendation}>
-                <p>Vi anbefaler at du læser afsnittet om <span stlye={{ color: 'var(--linkBlue)'}}>højresving</span>, inden du tager flere prøver, da dine fejl ofte hører sker ved spørgsmål, der hører til den katagori.</p>
+                <h2>Læs om dette.</h2>
+                <p>Vi anbefaler at du læser afsnittet om <span stlye={{ color: 'var(--linkBlue)'}}>højresving</span>, inden du tager flere prøver, da dine fejl ofte sker i den katagori.</p>
               </div>
               <div className={style.recommendation}>
+                <h2>Du er snart klar.</h2>
                 <p>Vi anbefaler at du består fem test i streg, før du melder dig til en køreprøve.</p>
               </div>
             </div>

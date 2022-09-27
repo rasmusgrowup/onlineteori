@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "framer-motion": "^7.4.0",
     "graphql": "^16.6.0",
     "graphql-request": "^5.0.0",
+    "motion": "^10.14.2",
     "next": "12.3.0",
     "next-auth": "^4.10.3",
     "react": "18.2.0",
