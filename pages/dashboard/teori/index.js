@@ -84,9 +84,10 @@ function Nav({ array }) {
 			</header>
 			<div className={style.teoriNavTable}>
 			{ array.map((subject, i) => (
-				<ul key={i}>{subject.titel}
+				<ul key={i}>
+				<div>{subject.titel}</div>
 				{ subject.chapters.map((chapter, i) => (
-					<li>
+					<li key={i}>
 						{chapter.titel}
 						{ chapter.completed && <span className={style.checkmark}><GreenDot /></span>}
 					</li>
