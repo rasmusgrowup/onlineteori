@@ -20,8 +20,10 @@ a {
 :root {
   --white: white;
   --darkBlue: #010B36;
+  --hoverDarkBlue: rgb(21, 36, 101);
   --lightBlue: #C4C8D8;
   --lightGrey: #F4F4F4;
+  --hoverLightGrey: #fafafa;
   --light: rgb(250, 250, 250);
   --linkBlue: #0A25D9;
   --pureBlue: #1835F8;

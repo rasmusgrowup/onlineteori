@@ -43,7 +43,7 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default function Dashboard({ user }) {
+export default function Dashboard({ user, children }) {
 	return (
     <>
       <Sidebar />
@@ -52,6 +52,7 @@ export default function Dashboard({ user }) {
           <User navn={user.name} src={user.userPic.url}/>
         </header>
         <h1>Velkommen tilbage, <br /> {user.name}</h1>
+        <div>{children}</div>
         <Footer />
       </section>
     </>

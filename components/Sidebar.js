@@ -37,7 +37,7 @@ function BackendSidebar({ displayMenu }) {
             </a>
           </Link>
           <Link href='/dashboard/teori' passHref>
-            <a className={router.pathname === '/dashboard/teori' ? `${sidebar.sidebarItem} ${sidebar.active}` : `${sidebar.sidebarItem}`}>
+            <a className={router.pathname === '/dashboard/teori' || router.pathname === '/dashboard/teori/[...slug]' ? `${sidebar.sidebarItem} ${sidebar.active}` : `${sidebar.sidebarItem}`}>
               <Teori />
               <span>Teori</span>
             </a>

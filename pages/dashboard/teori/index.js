@@ -1,20 +1,20 @@
 // Components
-import Sidebar from '../../../components/Sidebar'
-import User from '../../../components/User'
-import Footer from '../../../components/Footer'
-import Image from 'next/image'
-import { useState } from 'react'
-
-import GreenDot from '../../../components/icons/GreenDot'
-import List from '../../../components/icons/List'
+import Sidebar from '../../../components/Sidebar' // Sidebar for page
+import User from '../../../components/User' // User profile
+import Footer from '../../../components/Footer' // Footer for page
+import TeoriNav from '../../../components/TeoriNav' // Navigation for pages in theory book
 
 import style from '../../../styles/dashboard.module.scss' // Styling import
 
 import { getSession } from 'next-auth/react'; // Session import
+import { useState } from 'react'; // useState() import
 
 // Hygraph imports
 import { hygraphClient } from '../../../lib/hygraph'; // GraphCMS
-import { gql } from 'graphql-request'; // gql
+import { gql } from 'graphql-request';
+import components from "../../../styles/components.module.scss";
+import Link from "next/link";
+import { useRouter } from "next/router"; // gql
 
 const GetUserProfileById = gql`
   query GetUserProfileById($id: ID!) {
@@ -29,111 +29,82 @@ const GetUserProfileById = gql`
   }
 `;
 
-const GetSubjectsAndChapters = gql`
-  query SubjectsAndChapters {
-	subjects {
-	    id
-	    titel
-	    chapters {
-	    	id
-	    	titel
-	    	completed
-	    }
-	  }
+const GetTheoryBook = gql`
+	query GetTheoryBook {
+		theoryBook(where: {title: "Kategori B"}) {
+			id
+			slug
+			title
+			intro {
+				html
+			}
+			parts {
+				id
+				title
+				slug
+				pages {
+				content {
+					html
+				}
+				title
+				slug
+				}
+			}
+		}
 	}
 `;
 
 export async function getServerSideProps(context) {
-  const session = await getSession(context);
+	const session = await getSession(context);
 
-  if (!session) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    };
-  }
-
-  const { user } = await hygraphClient.request(GetUserProfileById, {
-    id: session.userId,
-  });
-
-  const { subjects } = await hygraphClient.request(GetSubjectsAndChapters);
-
-  return {
-    props: {
-      user,
-      subjects,
-    },
-  };
-}
-
-function Nav({ array }) {
-	const [openNav, setOpenNav] = useState(false);
-	const handleNav = () => {
-		setOpenNav(!openNav)
+	if (!session) {
+		return {
+			redirect: {
+				destination: '/',
+				permanent: false,
+			},
+		};
 	}
-	console.log(openNav)
 
-	return (
-		<aside className={ openNav ? `${style.teoriNav} ${style.open}` : `${style.teoriNav} ${style.close}`}>
-			<header className={style.navHeader} onClick={() => setOpenNav(!openNav)}>
-				Afsnit
-				<List />
-			</header>
-			<div className={style.teoriNavTable}>
-			{ array.map((subject, i) => (
-				<ul key={i}>
-				<div>{subject.titel}</div>
-				{ subject.chapters.map((chapter, i) => (
-					<li key={i}>
-						{chapter.titel}
-						{ chapter.completed && <span className={style.checkmark}><GreenDot /></span>}
-					</li>
-				))}
-				</ul>
-			))}
-			</div>
-		</aside>
-	)
+	const { user } = await hygraphClient.request(GetUserProfileById, {
+		id: session.userId,
+	});
+
+	const { theoryBook } = await hygraphClient.request(GetTheoryBook);
+
+	return {
+		props: {
+			user,
+			theoryBook,
+		},
+	};
 }
 
-function Content() {
+function Content({ content }) {
+	const [page, setPage] = useState(content.parts[0].pages[0]);
+	console.log(page)
+
 	return (
 		<div className={style.chapterContent}>
-			<span>Introduktion</span>
-			<h1>Første kapitel</h1>
-			<p>
-	          Importantly, Next.js lets you choose which pre-rendering form you&apos;d like to use for each page. You can create a &quot;hybrid&quot; Next.js app by using Static Generation for most pages and using Server-side Rendering for others.<br/><br/>
-	          We recommend using Static Generation over Server-side Rendering for performance reasons. Statically generated pages can be cached by CDN with no extra configuration to boost performance. However, in some cases, Server-side Rendering might be the only option.<br/><br/>
-	          You can also use Client-side Rendering along with Static Generation or Server-side Rendering. That means some parts of a page can be rendered entirely by client side JavaScript. To learn more, take a look at the Data Fetching documentation.
-	        </p>
-	        <p>
-	          Importantly, Next.js lets you choose which pre-rendering form you&apos;d like to use for each page. You can create a &quot;hybrid&quot; Next.js app by using Static Generation for most pages and using Server-side Rendering for others.<br/><br/>
-	          We recommend using Static Generation over Server-side Rendering for performance reasons. Statically generated pages can be cached by CDN with no extra configuration to boost performance. However, in some cases, Server-side Rendering might be the only option.<br/><br/>
-	          You can also use Client-side Rendering along with Static Generation or Server-side Rendering. That means some parts of a page can be rendered entirely by client side JavaScript. To learn more, take a look at the Data Fetching documentation.
-	        </p>
-	        <p>
-	          Importantly, Next.js lets you choose which pre-rendering form you&apos;d like to use for each page. You can create a &quot;hybrid&quot; Next.js app by using Static Generation for most pages and using Server-side Rendering for others.<br/><br/>
-	          We recommend using Static Generation over Server-side Rendering for performance reasons. Statically generated pages can be cached by CDN with no extra configuration to boost performance. However, in some cases, Server-side Rendering might be the only option.<br/><br/>
-	          You can also use Client-side Rendering along with Static Generation or Server-side Rendering. That means some parts of a page can be rendered entirely by client side JavaScript. To learn more, take a look at the Data Fetching documentation.
-	        </p>
+			<h1>{content.title}</h1>
+			<div dangerouslySetInnerHTML={{ __html: `${content.intro.html}` }}></div>
+			<Link href="/dashboard/teori/[slug]" as={`/dashboard/teori/${page.slug}`}><a className={components.darkButton}>Fortsæt</a></Link>
 		</div>
 	)
 }
 
-export default function Teori({ user, subjects }) {
+export default function Teori({ user, theoryBook }) {
+	const [parts, setParts] = useState([...theoryBook.parts])
 
 	return (
 		<section className={style.main}>
 			<Sidebar />
 			<header className={style.header}>
-	          <User navn={user.name} src={user.userPic.url}/>
-	        </header>
-	        <Nav array={subjects}/>
-	        <Content />
-	        <Footer />
+				<User navn={user.name} src={user.userPic.url}/>
+			</header>
+			<TeoriNav array={parts}/>
+			<Content content={theoryBook} />
+			<Footer />
 		</section>
 	)
 }
