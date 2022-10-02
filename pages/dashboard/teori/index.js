@@ -43,11 +43,50 @@ const GetTheoryBook = gql`
 				title
 				slug
 				pages {
-				content {
-					html
+					__typename
+					content { html }
+					title
+					slug
 				}
-				title
-				slug
+				stopTests {
+					__typename
+					title
+					slug
+					questions {
+						question
+						isCompleted
+						answers {
+							answer
+							userAnswer
+							expectedAnswer
+						}
+					}
+				}
+				contents {
+					... on Page {
+						id
+						__typename
+						content { html }
+						title
+						slug
+					}
+					... on StopTest {
+						id
+						__typename
+						title
+						slug
+						questions {
+							id
+							question
+							isCompleted
+							answers {
+								id
+								answer
+								userAnswer
+								expectedAnswer
+							}
+						}
+					}
 				}
 			}
 		}
@@ -87,7 +126,7 @@ function Content({ content }) {
 	return (
 		<div className={style.chapterContent}>
 			<h1>{content.title}</h1>
-			<div dangerouslySetInnerHTML={{ __html: `${content.intro.html}` }}></div>
+			<div dangerouslySetInnerHTML={{ __html: `${content.intro.html}` }} className={style.richText}></div>
 			<Link href="/dashboard/teori/[slug]" as={`/dashboard/teori/${page.slug}`}><a className={components.darkButton}>Fortsæt</a></Link>
 		</div>
 	)
@@ -103,7 +142,7 @@ export default function Teori({ user, theoryBook }) {
 				<User navn={user.name} src={user.userPic.url}/>
 			</header>
 			<TeoriNav array={parts}/>
-			<Content content={theoryBook} />
+			<Content content={theoryBook}/>
 			<Footer />
 		</section>
 	)

@@ -10,6 +10,8 @@ import TeoriNav from '../../../components/TeoriNav' // Navigation for pages in t
 
 import style from '../../../styles/dashboard.module.scss' // Styling import
 import components from '../../../styles/components.module.scss' // Styling import
+import ChevronRight from '../../../components/Icons/ChevronRight' // Chevron right SVG icon
+import ChevronLeft from '../../../components/Icons/ChevronLeft' // Chevron right SVG icon
 
 import { getSession } from 'next-auth/react'; // Session import
 
@@ -42,9 +44,50 @@ const GetTheoryBook = gql`
 				title
 				slug
 				pages {
+					__typename
 					content { html }
 					title
 					slug
+				}
+				stopTests {
+					__typename
+					title
+					slug
+					questions {
+						question
+						isCompleted
+						answers {
+							answer
+							userAnswer
+							expectedAnswer
+						}
+					}
+				}
+				contents {
+					... on Page {
+						id
+						__typename
+						content { html }
+						title
+						slug
+					}
+					... on StopTest {
+						id
+						__typename
+						title
+						slug
+						questions {
+							id
+							question
+							isCompleted
+							answers {
+								id
+								answer
+								userAnswer
+								expectedAnswer
+							}
+						}
+					}
 				}
 			}
 		}
@@ -58,6 +101,25 @@ const GetPageBySlug = gql`
 			title
 			slug
 	    	id
+	    }
+	}
+`;
+
+const GetStopTestBySlug = gql`
+	query GetStopTestBySlug($slug: String!) {
+	    stopTest: stopTest(where: { slug: $slug }) {
+			__typename
+			title
+			slug
+			questions {
+				question
+				isCompleted
+				answers {
+					answer
+					userAnswer
+					expectedAnswer
+				}
+			}
 	    }
 	}
 `;
@@ -85,26 +147,42 @@ export async function getServerSideProps(context) {
 		slug: context.query.slug.toString(),
 	});
 
+	const { stopTest } = await hygraphClient.request(GetStopTestBySlug, {
+		slug: context.query.slug.toString(),
+	});
+
 	return {
 		props: {
 			user,
 			theoryBook,
 			page,
+			stopTest,
 		},
 	};
 }
 
+function Pill() {
+	const [on, setOn] = useState(false);
+	return (
+		<div className={style.pill} onClick={() => setOn(!on)}>
+			<span className={ on ? `${style.dot} ${style.dotOn}` : `${style.dot}`}></span>
+		</div>
+	)
+}
 
-export default function Page({ user, theoryBook, page }) {
+
+export default function Page({ user, theoryBook, page, stopTest }) {
 	const router = useRouter()
 	const slug = router.query.slug || [];
 	const [parts, setParts] = useState([...theoryBook.parts])
-	const [pages, setPages] = useState([...parts[0].pages])
-	const [index, setIndex] = useState(pages.findIndex(e => e.slug === slug.toString()))
-	const [nextPage, setNextPage] = useState(pages[index+1])
-	const [prevPage, setPrevPage] = useState(pages[index-1])
+	//const [pages, setPages] = useState(parts.map((p) => p.pages).flat())
+	const [contents, setContents] = useState(parts.map((p) => p.contents).flat())
+	const [contentIndex, setContentIndex] = useState(contents.findIndex(e => e.slug === slug.toString()))
+	//const [pageType, setPageType] = useState(pages[pageIndex].__typename)
+	const [nextPage, setNextPage] = useState(contents[contentIndex+1])
+	const [prevPage, setPrevPage] = useState(contents[contentIndex-1])
 
-	console.log(pages.length)
+	console.log(contents)
 
 	return (
 		<section className={style.main}>
@@ -114,12 +192,55 @@ export default function Page({ user, theoryBook, page }) {
 			</header>
 			<TeoriNav array={parts}/>
 			<div className={style.chapterContent}>
-				<h1>{page.title}</h1>
-				<div dangerouslySetInnerHTML={{ __html: `${page.content.html}` }}></div>
-				<div className={style.buttonsContainer}>
-					{ index > 0 &&  <Link href="/dashboard/teori/[slug]" as={`/dashboard/teori/${prevPage.slug}`}><a className={components.darkButton}>Forrige</a></Link>}
-					{ index < pages.length -1 && <Link href="/dashboard/teori/[slug]" as={`/dashboard/teori/${nextPage.slug}`}><a className={components.darkButton}>Næste</a></Link>}
-				</div>
+				{ contents[contentIndex].__typename === 'Page' ?
+				<>
+ 					<h1>{page.title}</h1>
+					<div dangerouslySetInnerHTML={{__html: `${page.content.html}`}} className={style.richText}></div>
+					<div className={style.buttonsContainer}>
+						{contentIndex > 0 && contentIndex < contents.length -1 &&
+							<Link href="/dashboard/teori/[slug]" as={`/dashboard/teori/${prevPage.slug}`}>
+							<a className={components.lightButton}><span className={style.prev}><ChevronLeft /></span>Forrige</a>
+							</Link>
+						}
+						{contentIndex < contents.length -1 &&
+							<Link href="/dashboard/teori/[slug]" as={`/dashboard/teori/${nextPage.slug}`}>
+							<a className={components.lightButton}>Næste<span className={style.next}><ChevronRight /></span></a>
+							</Link>
+						}
+						{contentIndex === contents.length -1 &&
+							<Link href="/dashboard/teori">
+							<a className={components.blueButton}>Afslut</a>
+							</Link>
+						}
+					</div>
+				</> :
+				<>
+					<h1>{stopTest.title}</h1>
+					<p className={style.richText}>Du kan nu lade dig teste i læsestoffet, du netop har gennemgået. Testen er for din egen skyld, så du kan holde øje med dine fremskridt. Du kan tage testen så mange gange du vil.</p>
+					{ stopTest.questions.map((question, i) => (
+						<div className={style.questionContainer} key={i}>
+							<h2 className={style.question}>{question.question}</h2>
+							{question.answers.map((answer, i) => (
+								<div key={i} className={style.answerContainer}>
+									<div className={style.answer}>{answer.answer}</div>
+									<Pill />
+								</div>
+							))}
+						</div>
+					))}
+					{ stopTest.questions.map((question, i) => (
+						<div className={style.questionContainer} key={i}>
+							<h2 className={style.question}>{question.question}</h2>
+							{question.answers.map((answer, i) => (
+								<div key={i} className={style.answerContainer}>
+									<div className={style.answer}>{answer.answer}</div>
+									<Pill />
+								</div>
+							))}
+						</div>
+					))}
+				</>
+				}
 			</div>
 			<Footer />
 		</section>

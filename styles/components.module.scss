@@ -4,7 +4,7 @@
 	align-items: center;
 	background-color: var(--lightGrey);
 	border: none;
-	border-radius: 3px;
+	border-radius: 4px;
 	color: var(--darkBlue);
 	cursor: pointer;
 	display: inline-flex;
@@ -22,7 +22,43 @@
 	align-items: center;
 	background-color: var(--darkBlue);
 	border: none;
-	border-radius: 3px;
+	border-radius: 4px;
+	color: var(--white);
+	cursor: pointer;
+	display: inline-flex;
+	font-size: 14px;
+	height: 40px;
+	justify-content: center;
+	padding: 0 1.75em;
+
+	&:hover {
+		background-color: var(--hoverDarkBlue);
+	}
+}
+
+.blueButton {
+	align-items: center;
+	background-color: var(--pureBlue);
+	border: none;
+	border-radius: 4px;
+	color: var(--white);
+	cursor: pointer;
+	display: inline-flex;
+	font-size: 14px;
+	height: 40px;
+	justify-content: center;
+	padding: 0 1.75em;
+
+	&:hover {
+		background-color: var(--hoverDarkBlue);
+	}
+}
+
+.greenButton {
+	align-items: center;
+	background-color: var(--pureGreen);
+	border: none;
+	border-radius: 4px;
 	color: var(--white);
 	cursor: pointer;
 	display: inline-flex;

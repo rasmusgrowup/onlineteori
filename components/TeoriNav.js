@@ -3,10 +3,12 @@ import { useState, useContext } from 'react' // useState for setting navigation 
 import { useRouter } from 'next/router'
 
 import style from '../styles/dashboard.module.scss' // Styling import
+import components from '../styles/components.module.scss' // Styling import
 import List from './Icons/List' // List SVG Icon
 
 export default function TeoriNav({ array }) {
 	const [openNav, setOpenNav] = useState(false);
+	const [selected, setSelected] = useState(array[0].title)
 	const router = useRouter()
 	const slug = router.query.slug || [];
 
@@ -22,16 +24,28 @@ export default function TeoriNav({ array }) {
 			</header>
 			<div className={style.teoriNavTable}>
 			{ array.map((part, i) => (
-				<ul key={i}>
-				<div>{part.title}</div>
-				{ part.pages.map((page, i) => (
-					<Link key={i} href="/dashboard/teori/[slug]" as={`/dashboard/teori/${page.slug}`} passHref>
-						<a className={slug.toString() === page.slug ? `${style.active}` : undefined}>
-							{page.title}
-						</a>
-					</Link>
-				))}
-				</ul>
+				<div className={style.inner} key={i}>
+					<div onClick={() => setSelected(part.title)} style={{ cursor: 'pointer' }}>{part.title}</div>
+					<div className={ selected === part.title ? `${style.opened}` : `${style.collapsed}`}>
+						{ part.contents.map((content, i) => (
+							<div key={i}>
+							{ content.__typename === 'Page' ?
+								<Link href="/dashboard/teori/[slug]" as={`/dashboard/teori/${content.slug}`} passHref>
+									<a className={slug.toString() === content.slug ? `${style.active}` : undefined}>
+										{content.title}
+									</a>
+								</Link>
+							:
+								<Link href="/dashboard/teori/[slug]" as={`/dashboard/teori/${content.slug}`} passHref>
+									<a className={style.testButton}>
+										{content.title}
+									</a>
+								</Link>
+							}
+							</div>
+						))}
+					</div>
+				</div>
 			))}
 			</div>
 		</aside>

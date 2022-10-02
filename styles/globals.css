@@ -23,12 +23,14 @@ a {
   --hoverDarkBlue: rgb(21, 36, 101);
   --lightBlue: #C4C8D8;
   --lightGrey: #F4F4F4;
-  --hoverLightGrey: #fafafa;
+  --hoverLightGrey: #f9f9f9;
   --light: rgb(250, 250, 250);
   --linkBlue: #0A25D9;
   --pureBlue: #1835F8;
   --pureGreen: #66D176;
+  --pureRed: #ff6e6e;
   --grey: rgb(177, 177, 177);
+  --darkGrey: #444444;
 }
 
 /*
