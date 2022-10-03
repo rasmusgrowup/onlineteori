@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useEffect, useContext } from 'react'
 
@@ -80,6 +81,9 @@ const GetTheoryBook = gql`
 							id
 							question
 							isCompleted
+							image {
+								url
+							}
 							answers {
 								id
 								answer
@@ -114,6 +118,11 @@ const GetStopTestBySlug = gql`
 			questions {
 				question
 				isCompleted
+				image {
+					url
+					height
+					width
+				}
 				answers {
 					answer
 					userAnswer
@@ -126,7 +135,6 @@ const GetStopTestBySlug = gql`
 
 export async function getServerSideProps(context) {
 	const session = await getSession(context);
-	console.log(context.query.slug)
 
 	if (!session) {
 		return {
@@ -175,14 +183,11 @@ export default function Page({ user, theoryBook, page, stopTest }) {
 	const router = useRouter()
 	const slug = router.query.slug || [];
 	const [parts, setParts] = useState([...theoryBook.parts])
-	//const [pages, setPages] = useState(parts.map((p) => p.pages).flat())
+	const [partsIndex, setPartsIndex] = useState(parts.findIndex(e => e.contents.some(p => p.slug === slug.toString())))
 	const [contents, setContents] = useState(parts.map((p) => p.contents).flat())
 	const [contentIndex, setContentIndex] = useState(contents.findIndex(e => e.slug === slug.toString()))
-	//const [pageType, setPageType] = useState(pages[pageIndex].__typename)
 	const [nextPage, setNextPage] = useState(contents[contentIndex+1])
 	const [prevPage, setPrevPage] = useState(contents[contentIndex-1])
-
-	console.log(contents)
 
 	return (
 		<section className={style.main}>
@@ -194,31 +199,36 @@ export default function Page({ user, theoryBook, page, stopTest }) {
 			<div className={style.chapterContent}>
 				{ contents[contentIndex].__typename === 'Page' ?
 				<>
- 					<h1>{page.title}</h1>
+					<span>{parts[partsIndex].contents.findIndex(e => e.slug === slug.toString()) + 1} / {parts[partsIndex].contents.length}</span>
+ 					<h1 className={style.title}>{page.title}</h1>
 					<div dangerouslySetInnerHTML={{__html: `${page.content.html}`}} className={style.richText}></div>
 					<div className={style.buttonsContainer}>
 						{contentIndex > 0 && contentIndex < contents.length -1 &&
 							<Link href="/dashboard/teori/[slug]" as={`/dashboard/teori/${prevPage.slug}`}>
-							<a className={components.lightButton}><span className={style.prev}><ChevronLeft /></span>Forrige</a>
+								<a className={components.lightButton}><span className={style.prev}><ChevronLeft /></span>Forrige</a>
 							</Link>
 						}
 						{contentIndex < contents.length -1 &&
 							<Link href="/dashboard/teori/[slug]" as={`/dashboard/teori/${nextPage.slug}`}>
-							<a className={components.lightButton}>Næste<span className={style.next}><ChevronRight /></span></a>
+								<a className={components.lightButton}>Næste<span className={style.next}><ChevronRight /></span></a>
 							</Link>
 						}
 						{contentIndex === contents.length -1 &&
 							<Link href="/dashboard/teori">
-							<a className={components.blueButton}>Afslut</a>
+								<a className={components.blueButton}>Afslut</a>
 							</Link>
 						}
 					</div>
 				</> :
 				<>
-					<h1>{stopTest.title}</h1>
+					<h1 className={style.title}>{stopTest.title}</h1>
 					<p className={style.richText}>Du kan nu lade dig teste i læsestoffet, du netop har gennemgået. Testen er for din egen skyld, så du kan holde øje med dine fremskridt. Du kan tage testen så mange gange du vil.</p>
 					{ stopTest.questions.map((question, i) => (
 						<div className={style.questionContainer} key={i}>
+							<div className={style.imageContainer}>
+								<Image src={question.image.url} width={question.image.width} height={question.image.height} objectFit="cover" layout="responsive" />
+							</div>
+							<div className={style.inner}>
 							<h2 className={style.question}>{question.question}</h2>
 							{question.answers.map((answer, i) => (
 								<div key={i} className={style.answerContainer}>
@@ -226,19 +236,12 @@ export default function Page({ user, theoryBook, page, stopTest }) {
 									<Pill />
 								</div>
 							))}
+							</div>
 						</div>
 					))}
-					{ stopTest.questions.map((question, i) => (
-						<div className={style.questionContainer} key={i}>
-							<h2 className={style.question}>{question.question}</h2>
-							{question.answers.map((answer, i) => (
-								<div key={i} className={style.answerContainer}>
-									<div className={style.answer}>{answer.answer}</div>
-									<Pill />
-								</div>
-							))}
-						</div>
-					))}
+					<Link href="/dashboard/teori/[slug]" as={`/dashboard/teori/${nextPage.slug}`}>
+						<a className={components.blueButton}>Afslut test</a>
+					</Link>
 				</>
 				}
 			</div>

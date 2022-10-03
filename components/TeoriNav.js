@@ -7,10 +7,13 @@ import components from '../styles/components.module.scss' // Styling import
 import List from './Icons/List' // List SVG Icon
 
 export default function TeoriNav({ array }) {
-	const [openNav, setOpenNav] = useState(false);
-	const [selected, setSelected] = useState(array[0].title)
 	const router = useRouter()
 	const slug = router.query.slug || [];
+	const [openNav, setOpenNav] = useState(false);
+	const [partsIndex, setPartsIndex] = useState(array.findIndex(e => e.contents.some(p => p.slug === slug.toString())))
+	const [selected, setSelected] = useState(slug.toString() === "" ? array[0].title : array[partsIndex].title)
+
+	console.log(slug)
 
 	const handleNav = () => {
 		setOpenNav(!openNav)
@@ -26,7 +29,7 @@ export default function TeoriNav({ array }) {
 			{ array.map((part, i) => (
 				<div className={style.inner} key={i}>
 					<div onClick={() => setSelected(part.title)} style={{ cursor: 'pointer' }}>{part.title}</div>
-					<div className={ selected === part.title ? `${style.opened}` : `${style.collapsed}`}>
+					<div className={ selected === part.title ? `${style.opened}` : `${style.opened}`}>
 						{ part.contents.map((content, i) => (
 							<div key={i}>
 							{ content.__typename === 'Page' ?

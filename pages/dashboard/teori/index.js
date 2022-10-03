@@ -121,7 +121,6 @@ export async function getServerSideProps(context) {
 
 function Content({ content }) {
 	const [page, setPage] = useState(content.parts[0].pages[0]);
-	console.log(page)
 
 	return (
 		<div className={style.chapterContent}>
