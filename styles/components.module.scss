@@ -71,3 +71,49 @@
 		background-color: var(--hoverDarkBlue);
 	}
 }
+
+.testButtonContainer {
+	background-color: var(--white);
+	border: 1px solid var(--lightGrey);
+	border-radius: 4px;
+
+	.testButton {
+		align-items: center;
+		border: none;
+		background-color: var(--white);
+		color: var(--darkBlue);
+		cursor: pointer;
+		display: inline-flex;
+		font-size: 14px;
+		height: 40px;
+		justify-content: center;
+		padding: 0 1.75em;
+		width: 40px;
+
+		&:hover {
+			background-color: var(--hoverLightGrey);
+		}
+	}
+
+	.testButtonSelected {
+		align-items: center;
+		border: none;
+		background-color: var(--pureBlue);
+		color: var(--white);
+		cursor: pointer;
+		display: inline-flex;
+		font-size: 14px;
+		height: 40px;
+		justify-content: center;
+		padding: 0 1.75em;
+		width: 40px;
+	}
+
+	button:first-of-type {
+		border-radius: 4px 0 0 4px;
+		border-right: 1px solid var(--lightGrey);
+	}
+	button:last-of-type {
+		border-radius: 0 4px 4px 0;
+	}
+}

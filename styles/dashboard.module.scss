@@ -204,6 +204,7 @@
 .teoriNav {
 	background-color: white;
 	border-right: 1px solid var(--lightGrey);
+	height: calc(100% - 12em);
 	max-width: $sidebarWidth;
 	padding: 0.5em;
 	padding-right: 2em;
@@ -217,6 +218,7 @@
 	@media (max-width: $m) {
 		border-right: transparent;
 		border-radius: 25px;
+		height: auto;
 		left: 1em;
 		max-width: 100%;
 		padding: 0;
@@ -252,9 +254,10 @@
 		box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.05);
 		-webkit-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.05);
 		-moz-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.05);
-		border-bottom: 1em solid white;
+		border-bottom: 1.2em solid white;
 		border-top: 1em solid white;
 		display: block;
+		margin-top: 0.5em;
 		max-height: 400px;
 		overflow: auto;
 	}
@@ -266,7 +269,7 @@
 
 	@media (max-width: $m) {
 		display: none;
-		padding: 1.5em;
+		padding: 0 1.5em;
 	}
 }
 
@@ -383,6 +386,48 @@
 	width: 0.5em;
 }
 
+.progressBox {
+	bottom: 2px;
+	height: 2em;
+	left: 0.5em;
+	position: absolute;
+	width: calc(100% - 2em);
+
+	@media (max-width: $m) {
+		display: none;
+	}
+
+	span {
+		//color: var(--grey);
+		font-size: 14px;
+	}
+
+	&:after {
+		background-color: var(--lightGrey);
+		border-radius: 2px;
+		bottom: 0;
+		content: '';
+		height: 4px;
+		left: 0;
+		margin-top: 0.5em;
+		position: absolute;
+		width: 100%;
+		z-index: 0;
+	}
+}
+
+.progressBar {
+	background-color: var(--pureGreen);
+	border-radius: 2px;
+	bottom: 0;
+	content: '';
+	height: 4px;
+	left: 0;
+	margin-top: 0.5em;
+	position: absolute;
+	z-index: 1;
+}
+
 // Questions styling
 .questionContainer {
 	box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.05);
@@ -443,6 +488,18 @@
 			transform: translateX(100%);
 			transition: transform .1s ease-out;
 		}
+	}
+
+	.testResult {
+		margin-top: 1em;
+	}
+
+	.testPassed {
+		color: var(--pureGreen);
+	}
+
+	.testFailed {
+		color: var(--pureRed);
 	}
 }
 

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useReducer } from 'react'
 
 // Components
 import Sidebar from '../../../components/Sidebar' // Sidebar for page
@@ -170,10 +170,67 @@ export async function getServerSideProps(context) {
 }
 
 function Pill() {
-	const [on, setOn] = useState(false);
+	const [isTrue, setIsTrue] = useState(false);
+
 	return (
-		<div className={style.pill} onClick={() => setOn(!on)}>
-			<span className={ on ? `${style.dot} ${style.dotOn}` : `${style.dot}`}></span>
+		<div className={style.pill} onClick={() => setIsTrue(!isTrue)}>
+			<span className={ isTrue ? `${style.dot} ${style.dotOn}` : `${style.dot}`}></span>
+		</div>
+	)
+}
+
+function StopTest({ question, i}) {
+	const [answers, setAnswers] = useState(question.answers)
+	const [userAnswers, setUserAnswers] = useState(question.answers.map((a) => null))
+	const [expectedAnswers, setExpectedAnswers] = useState(question.answers.map((a) => a.expectedAnswer))
+	const [passed, setPassed] = useState(null)
+	const [showResult, setShowResult] = useState(false)
+
+	const checkIfPassed = () => {
+		if (JSON.stringify(userAnswers) == JSON.stringify(expectedAnswers)) {
+			setPassed(true)
+		} else (
+			setPassed(false)
+		)
+		setShowResult(false)
+	}
+
+	return (
+		<div className={style.questionContainer} key={i}>
+			<div className={style.imageContainer} style={{ display: 'none' }}>
+				<Image src={question.image.url} width={question.image.width} height={question.image.height} objectFit="cover" layout="responsive" />
+			</div>
+			<div className={style.inner}>
+				<h2 className={style.question}>{question.question}</h2>
+				{question.answers.map((answer, i) => (
+					<div key={i} className={style.answerContainer}>
+						<div className={style.answer}>{answer.answer}</div>
+						<div style={{ display: 'none' }}><Pill answer={answer.answer} index={i}/></div>
+						<div className={components.testButtonContainer}>
+							<button
+								onClick={() => {
+								setUserAnswers([userAnswers[i] = true, ...userAnswers].slice(1));
+								checkIfPassed()}}
+								className={ userAnswers[i] === true ? `${components.testButtonSelected}` : `${components.testButton}`}
+							>
+								Ja
+							</button>
+							<button
+								onClick={() => {
+								setUserAnswers([userAnswers[i] = false, ...userAnswers].slice(1));
+								checkIfPassed()}}
+								className={ userAnswers[i] === false ? `${components.testButtonSelected}` : `${components.testButton}`}
+							>
+								Nej
+							</button>
+						</div>
+					</div>
+				))}
+				<button className={components.blueButton} onClick={() => setShowResult(true)}>Afgiv svar</button>
+				{ showResult &&
+					<div className={ passed? `${style.testResult} ${style.testPassed}` : `${style.testResult} ${style.testFailed}`}>Dine svar er { passed ? "korrekte" : "IKKE korrekte"}</div>
+				}
+			</div>
 		</div>
 	)
 }
@@ -224,20 +281,7 @@ export default function Page({ user, theoryBook, page, stopTest }) {
 					<h1 className={style.title}>{stopTest.title}</h1>
 					<p className={style.richText}>Du kan nu lade dig teste i læsestoffet, du netop har gennemgået. Testen er for din egen skyld, så du kan holde øje med dine fremskridt. Du kan tage testen så mange gange du vil.</p>
 					{ stopTest.questions.map((question, i) => (
-						<div className={style.questionContainer} key={i}>
-							<div className={style.imageContainer}>
-								<Image src={question.image.url} width={question.image.width} height={question.image.height} objectFit="cover" layout="responsive" />
-							</div>
-							<div className={style.inner}>
-							<h2 className={style.question}>{question.question}</h2>
-							{question.answers.map((answer, i) => (
-								<div key={i} className={style.answerContainer}>
-									<div className={style.answer}>{answer.answer}</div>
-									<Pill />
-								</div>
-							))}
-							</div>
-						</div>
+						<StopTest question={question} key={i} />
 					))}
 					<Link href="/dashboard/teori/[slug]" as={`/dashboard/teori/${nextPage.slug}`}>
 						<a className={components.blueButton}>Afslut test</a>
