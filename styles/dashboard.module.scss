@@ -349,7 +349,7 @@
 	.richText {
 		letter-spacing: 0.07em;
 		line-height: 2;
-		font-size: 17px;
+		font-size: 16px;
 	}
 }
 
@@ -430,16 +430,17 @@
 
 // Questions styling
 .questionContainer {
-	box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.05);
-	-webkit-box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.05);
-	-moz-box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.05);
-	border-radius: 25px;
+	//box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.05);
+	//-webkit-box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.05);
+	//-moz-box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.05);
+	//border-radius: 25px;
+	border-top: 1px dashed var(--grey);
 	overflow: hidden;
 	margin-bottom: 2em;
 	margin-top: 3em;
 
 	.inner {
-		padding: 2em 1.5em;
+		padding: 2em 0 0;
 	}
 
 	.question {
