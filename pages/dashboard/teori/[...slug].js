@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState, useEffect, useReducer } from 'react'
+import { useState } from 'react'
 
 // Components
 import Sidebar from '../../../components/Sidebar' // Sidebar for page
@@ -169,16 +169,6 @@ export async function getServerSideProps(context) {
 	};
 }
 
-function Pill() {
-	const [isTrue, setIsTrue] = useState(false);
-
-	return (
-		<div className={style.pill} onClick={() => setIsTrue(!isTrue)}>
-			<span className={ isTrue ? `${style.dot} ${style.dotOn}` : `${style.dot}`}></span>
-		</div>
-	)
-}
-
 function StopTest({ question, i}) {
 	const [answers, setAnswers] = useState(question.answers)
 	const [userAnswers, setUserAnswers] = useState(question.answers.map((a) => null))
@@ -195,6 +185,8 @@ function StopTest({ question, i}) {
 		setShowResult(false)
 	}
 
+	console.log(passed)
+
 	return (
 		<div className={style.questionContainer} key={i}>
 			<div className={style.imageContainer} style={{ display: 'none' }}>
@@ -205,7 +197,6 @@ function StopTest({ question, i}) {
 				{question.answers.map((answer, i) => (
 					<div key={i} className={style.answerContainer}>
 						<div className={style.answer}>{answer.answer}</div>
-						<div style={{ display: 'none' }}><Pill answer={answer.answer} index={i}/></div>
 						<div className={components.testButtonContainer}>
 							<button
 								onClick={() => {
@@ -284,7 +275,7 @@ export default function Page({ user, theoryBook, page, stopTest }) {
 						<StopTest question={question} key={i} />
 					))}
 					<Link href="/dashboard/teori/[slug]" as={`/dashboard/teori/${nextPage.slug}`}>
-						<a className={components.blueButton}>Afslut test</a>
+						<a className={components.darkButton}>Afslut test og gå videre</a>
 					</Link>
 				</>
 				}

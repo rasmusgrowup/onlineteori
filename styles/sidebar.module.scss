@@ -1,8 +1,8 @@
 @import "sizes.scss";
 
 .sidebar {
-	background-color: var(--light);
-	border-right: 1px solid var(--lightGrey);
+	background-color: var(--secondaryBackground);
+	//border-right: 1px solid var(--primaryLineColor);
 	height: 100%;
 	left: 0;
 	padding: 1em 1em 2em;
@@ -13,7 +13,7 @@
 	z-index: 10;
 
 	@media (max-width: $m) {
-		background-color: white;
+		background-color: var(--secondaryBackground);
 		box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.14);
 		-webkit-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.14);
 		-moz-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.14);
@@ -25,7 +25,7 @@
 		padding-bottom: 1em;
 		position: absolute;
 		right: 0.7em;
-		top: 4.5em;
+		top: 4em;
 		width: calc(100% - 1.4em);
 	}
 }
@@ -34,13 +34,17 @@
 	display: initial;
 }
 
-.mainLogo {
-	width: 8em;
+.mainLogo .logoType {
+	color: var(--primaryFontColor);
+	font-size: 1.5em;
+	font-family: 'Pacifico';
+	margin: 0;
 
 	@media (max-width: $m) {
-		width: 5em;
+		font-size: 1em;
 	}
 }
+
 
 .sidebarMenu {
 	align-items: flex-start;
@@ -74,25 +78,25 @@
 	}
 
 	&:hover {
-		background-color: var(--lightGrey);
-		color: var(--pureBlue);
+		background-color: var(--primaryButtonBg);
+		color: var(--primaryAccent);
 
 		svg path {
-			stroke: var(--pureBlue);
+			stroke: var(--primaryAccent);
 		}
 
 		#chat path {
-			fill: var(--pureBlue);
+			fill: var(--primaryAccent);
 		}
 	}
 }
 
 .active {
-	background-color: var(--lightGrey);
-	color: var(--pureBlue);
+	background-color: var(--primaryButtonBg);
+	color: var(--primaryAccent);
 
 	svg path {
-		stroke: var(--pureBlue);
+		stroke: var(--primaryAccent);
 	}
 }
 
@@ -109,7 +113,7 @@
 	justify-content: center;
 	right: calc(1em - 10px);
 	position: absolute;
-	top: 1em;
+	top: 0.7em;
 	z-index: 10;
 	width: 40px;
 

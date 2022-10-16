@@ -1,6 +1,12 @@
+@font-face {
+  font-family: 'Pacifico';
+  src: url("/Pacifico-Regular.ttf") format('truetype');
+}
+
 html,
 body {
-  color:  var(--darkBlue);
+  background-color: var(--primaryBackground);
+  color:  var(--primaryFontColor);
   padding: 0;
   margin: 0;
   font-family: neue-haas-grotesk-display, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -19,18 +25,36 @@ a {
 
 :root {
   --white: white;
-  --darkBlue: #010B36;
-  --hoverDarkBlue: rgb(21, 36, 101);
   --lightBlue: #C4C8D8;
-  --lightGrey: #F4F4F4;
   --hoverLightGrey: #f9f9f9;
-  --light: rgb(250, 250, 250);
   --linkBlue: #0A25D9;
-  --pureBlue: #1835F8;
   --pureGreen: #66D176;
   --pureRed: #ff6e6e;
   --grey: rgb(177, 177, 177);
-  --darkGrey: #444444;
+  --darkGrey: rgb(68, 68, 68);
+  --primaryBackground: rgb(255, 255, 255);
+  --secondaryBackground: rgb(250, 250, 250);
+  --primaryLineColor: rgb(244, 244, 244);
+  --primaryFontColor: rgb(1, 11, 54);
+  --primaryButtonBg: rgb(244, 244, 244);
+  --primaryAccent: rgb(24, 53, 248);
+  --darkBlue: rgb(1, 11, 54);
+  --hoverDarkBlue: rgb(21, 36, 101);
+  --lightGrey: rgb(244, 244, 244);
+}
+
+[data-theme='dark'] {
+  --primaryBackground: rgb(22, 25, 35);
+  --secondaryBackground: rgb(15, 18, 30);
+  --primaryLineColor: rgb(54, 54, 54);
+  --primaryFontColor: rgb(255, 255, 255);
+  --primaryButtonBg: rgb(18, 20, 28);
+  --primaryAccent: rgb(241, 50, 255);
+  --darkBlue: rgb(91, 0, 171);
+  --hoverDarkBlue: rgb(67, 0, 126);
+  --darkGrey: rgb(180, 180, 180);
+  --lightGrey: rgb(45, 45, 45);
+  --linkBlue: rgb(213, 44, 209);
 }
 
 /*

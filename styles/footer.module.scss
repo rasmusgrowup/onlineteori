@@ -3,15 +3,13 @@
 .footer {
 	bottom: 1em;
 	display: flex;
+	justify-content: flex-end;
 	position: absolute;
+	width: calc(100% - 4em);
 }
 
 .leftContent {
 	align-content: center;
 	display: flex;
-	margin-right: 1em;
-}
-
-.copy {
-
+	margin-left: 1em;
 }

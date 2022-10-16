@@ -3,7 +3,6 @@ import { useState, useContext } from 'react' // useState for setting navigation 
 import { useRouter } from 'next/router'
 
 import style from '../styles/dashboard.module.scss' // Styling import
-import components from '../styles/components.module.scss' // Styling import
 import List from './Icons/List' // List SVG Icon
 
 export default function TeoriNav({ array }) {

@@ -78,7 +78,6 @@ export default function AccountPage({ user }) {
               priority='true'
               src={user.userPic.url} />
           </div>
-
           <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
             <input
               type="text"
@@ -96,6 +95,9 @@ export default function AccountPage({ user }) {
             />
             <button type="submit" className={component.darkButton} >Gem</button>
           </form>
+        </div>
+        <div className={style.category}>
+
         </div>
       </section>
     </>

@@ -9,6 +9,7 @@ import Sidebar from '../../../components/Sidebar'
 import Footer from '../../../components/Footer'
 import { motion } from "framer-motion" // Animation library
 import Image from 'next/image'
+import Link from 'next/link'
 import Plus from '../../../public/gradients/plus.png' // Big plus gradient icon
 
 const GetUserProfileById = gql`
@@ -50,10 +51,14 @@ export async function getServerSideProps(context) {
 function NewTest() {
   return (
     <motion.div whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }} className={style.newTest}>
-      <p><strong>Start en ny prøve.</strong> Du har taget 10 ud af 15 mulige prøver.</p>
-      <div className={style.plusContainer}>
-        <Image src={Plus} layout='responsive' quality='100' priority='true'/>
-      </div>
+      <Link href="proever/test-af-teoriprove">
+        <a>
+          <p><strong>Start en ny prøve.</strong> Du har taget 10 ud af 15 mulige prøver.</p>
+          <div className={style.plusContainer}>
+            <Image src={Plus} layout='responsive' quality='100' priority='true'/>
+          </div>
+        </a>
+      </Link>
     </motion.div>
   )
 }

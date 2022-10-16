@@ -26,7 +26,7 @@ function BackendSidebar({ displayMenu }) {
   return (
     <div className={ displayMenu ? `${sidebar.displaySidebar} ${sidebar.sidebar}` : `${sidebar.sidebar}`}>
       <div className={sidebar.mainLogo}>
-        <Image src={Logo} layout='responsive' priority='true' quality='100'/>
+        <h1 className={sidebar.logoType}>Onlineteori</h1>
       </div>
       <div className={sidebar.sidebarMenu} >
         <div className={sidebar.inner}>
@@ -43,7 +43,7 @@ function BackendSidebar({ displayMenu }) {
             </a>
           </Link>
           <Link href='/dashboard/proever' passHref>
-            <a className={router.pathname === '/dashboard/proever' ? `${sidebar.sidebarItem} ${sidebar.active}` : `${sidebar.sidebarItem}`}>
+            <a className={router.pathname === '/dashboard/proever' || router.pathname === '/dashboard/proever/[...slug]' ? `${sidebar.sidebarItem} ${sidebar.active}` : `${sidebar.sidebarItem}`}>
               <Tests />
               <span>Prøver</span>
             </a>
