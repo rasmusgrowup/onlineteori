@@ -134,7 +134,7 @@ function Test ({ question, i, index, questionsLength, active, completed, ...prop
                 ))}
                 { completed &&
                     <div>
-                        Rigtige svar: { expectedAnswers.map((e) => (<span>{e === true ? 'ja' : 'nej'}, </span>))}
+                        Rigtige svar: { expectedAnswers.map((e, i) => (<span key={i}>{e === true ? 'ja' : 'nej'}, </span>))}
                     </div>
                 }
             </div>
