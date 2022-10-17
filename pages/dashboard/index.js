@@ -57,8 +57,8 @@ export default function Dashboard({ user, children }) {
           <User navn={user.name} src={user.userPic.url}/>
           <Preferences />
         </header>
-        <Calendar />
         <h1>Velkommen tilbage, <br /> {user.name}</h1>
+        <Calendar />
       </section>
     </>
   )

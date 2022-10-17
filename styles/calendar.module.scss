@@ -8,6 +8,12 @@
   position: absolute;
   right: 1.5em;
   width: $sidebarWidth * 1.3;
+
+  @media (max-width: $m) {
+    position: relative;
+    right: auto;
+    width: 100%;
+  }
 }
 
 .header {
