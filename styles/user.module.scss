@@ -6,17 +6,18 @@
 }
 
 .imageContainer {
-	border-radius: 15px;
-	height: 30px;
+	border-radius: 3 * $radius;
+	height: 10 * $radius;
 	overflow: hidden;
-	width: 30px;
+	width: 10 * $radius;
 }
 
 .info span {
 	display: block;
 	letter-spacing: 1px;
-	font-size: 14px;
+	font-size: 12px;
 	margin-left: 1em;
+	width: 100px;
 }
 
 .info .username {

@@ -1,16 +1,20 @@
 // Imports
+import Image from 'next/image'
+import Link from 'next/link'
 import User from '../../../components/User'
+import Sidebar from '../../../components/Sidebar'
+import Preferences from '../../../components/Preferences'
+
 import style from '../../../styles/dashboard.module.scss'
-import typo from '../../../styles/typo.module.scss'
+import header from '../../../styles/header.module.scss'
+
+import Plus from '../../../public/gradients/plus.png' // Big plus gradient icon
+import { motion } from "framer-motion" // Animation library
+
+// Hygraph imports
 import { getSession } from 'next-auth/react'; // Session
 import { hygraphClient } from '../../../lib/hygraph'; // GraphCMS
 import { gql } from 'graphql-request'; // gql
-import Sidebar from '../../../components/Sidebar'
-import Footer from '../../../components/Footer'
-import { motion } from "framer-motion" // Animation library
-import Image from 'next/image'
-import Link from 'next/link'
-import Plus from '../../../public/gradients/plus.png' // Big plus gradient icon
 
 const GetUserProfileById = gql`
   query GetUserProfileById($id: ID!) {
@@ -81,8 +85,9 @@ export default function Proever({ user }) {
     <>
       <Sidebar />
       <section className={style.main}>
-        <header className={style.header}>
+        <header className={header.header}>
           <User navn={user.name} src={user.userPic.url}/>
+          <Preferences />
         </header>
         <div className={style.grid}>
           <div className={style.col1}>
@@ -117,7 +122,6 @@ export default function Proever({ user }) {
             </div>
           </div>
         </div>
-        <Footer />
       </section>
     </>
   )

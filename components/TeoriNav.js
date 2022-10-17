@@ -28,6 +28,10 @@ export default function TeoriNav({ array }) {
 				<List />
 			</header>
 			<div className={style.teoriNavTable}>
+			<div className={style.progressBox}>
+				<span>{progress}% gennemført</span>
+				<div className={style.progressBar} style={{ width: `${progress}%`}}></div>
+			</div>
 			{ array.map((part, i) => (
 				<div className={style.inner} key={i}>
 					<div onClick={() => setSelected(part.title)} style={{ cursor: 'pointer' }}>{part.title}</div>
@@ -52,10 +56,6 @@ export default function TeoriNav({ array }) {
 					</div>
 				</div>
 			))}
-				<div className={style.progressBox}>
-					<span>{progress}% gennemført</span>
-					<div className={style.progressBar} style={{ width: `${progress}%`}}></div>
-				</div>
 			</div>
 		</aside>
 	)

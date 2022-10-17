@@ -2,10 +2,10 @@
 
 .lightButton {
 	align-items: center;
-	background-color: var(--lightGrey);
+	background-color: var(--lightBtn);
 	border: none;
 	border-radius: 4px;
-	color: var(--darkBlue);
+	color: var(--primaryAccent);
 	cursor: pointer;
 	display: inline-flex;
 	font-size: 14px;
@@ -40,7 +40,7 @@
 
 .blueButton {
 	align-items: center;
-	background-color: var(--primaryAccent);
+	background-color: var(--darkBlue);
 	border: none;
 	border-radius: 4px;
 	color: var(--white);

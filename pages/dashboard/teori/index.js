@@ -1,10 +1,12 @@
 // Components
 import Sidebar from '../../../components/Sidebar' // Sidebar for page
 import User from '../../../components/User' // User profile
-import Footer from '../../../components/Footer' // Footer for page
 import TeoriNav from '../../../components/TeoriNav' // Navigation for pages in theory book
+import Preferences from '../../../components/Preferences'
 
 import style from '../../../styles/dashboard.module.scss' // Styling import
+import components from "../../../styles/components.module.scss";
+import header from "../../../styles/header.module.scss";
 
 import { getSession } from 'next-auth/react'; // Session import
 import { useState } from 'react'; // useState() import
@@ -12,9 +14,7 @@ import { useState } from 'react'; // useState() import
 // Hygraph imports
 import { hygraphClient } from '../../../lib/hygraph'; // GraphCMS
 import { gql } from 'graphql-request';
-import components from "../../../styles/components.module.scss";
 import Link from "next/link";
-import { useRouter } from "next/router"; // gql
 
 const GetUserProfileById = gql`
   query GetUserProfileById($id: ID!) {
@@ -135,14 +135,16 @@ export default function Teori({ user, theoryBook }) {
 	const [parts, setParts] = useState([...theoryBook.parts])
 
 	return (
-		<section className={style.main}>
+		<>
 			<Sidebar />
-			<header className={style.header}>
-				<User navn={user.name} src={user.userPic.url}/>
-			</header>
-			<TeoriNav array={parts}/>
-			<Content content={theoryBook}/>
-			<Footer />
-		</section>
+			<section className={style.main}>
+				<header className={header.header}>
+					<User navn={user.name} src={user.userPic.url}/>
+					<Preferences />
+				</header>
+				<TeoriNav array={parts}/>
+				<Content content={theoryBook}/>
+			</section>
+		</>
 	)
 }

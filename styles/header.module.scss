@@ -156,3 +156,16 @@
 		color: var(--primaryAccent);
 	}
 }
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 1.5em;
+	padding-bottom: 0;
+	width: 100%;
+
+	@media (max-width: $m) {
+		padding-bottom: 0.5em;
+		width: calc(100% - 48px);
+	}
+}

@@ -54,12 +54,14 @@ function BackendSidebar({ displayMenu }) {
               <span>Profil</span>
             </a>
           </Link>
+          <Link href='/dashboard' passHref>
+            <a className={sidebar.sidebarItem}>
+              <Chat />
+              <span>Support</span>
+            </a>
+          </Link>
         </div>
         <div className={sidebar.signOut}>
-          <div className={sidebar.sidebarItem}>
-            <Chat />
-            <span>Support</span>
-          </div>
           <div className={sidebar.sidebarItem} onClick={signOut}>
             <SignOut />
             <span>Log ud</span>
@@ -77,10 +79,10 @@ export default function Sidebar() {
 
 	return (
 		<>
-			<BackendSidebar displayMenu={handleMenu}/>
-      <div className={sidebar.toggle} onClick={handleDisplayMenu}>
-        { !handleMenu ? <MenuIcon /> : <CloseIcon /> }
-      </div>
+          <BackendSidebar displayMenu={handleMenu}/>
+          <div className={sidebar.toggle} onClick={handleDisplayMenu}>
+            { !handleMenu ? <MenuIcon /> : <CloseIcon /> }
+          </div>
 		</>
 	)
 }

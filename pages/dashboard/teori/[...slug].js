@@ -6,11 +6,13 @@ import { useState } from 'react'
 // Components
 import Sidebar from '../../../components/Sidebar' // Sidebar for page
 import User from '../../../components/User' // User profile
-import Footer from '../../../components/Footer' // Footer for page
 import TeoriNav from '../../../components/TeoriNav' // Navigation for pages in theory book
+import Preferences from '../../../components/Preferences'
 
 import style from '../../../styles/dashboard.module.scss' // Styling import
 import components from '../../../styles/components.module.scss' // Styling import
+import header from '../../../styles/header.module.scss' // Styling import
+
 import ChevronRight from '../../../components/Icons/ChevronRight' // Chevron right SVG icon
 import ChevronLeft from '../../../components/Icons/ChevronLeft' // Chevron right SVG icon
 
@@ -238,49 +240,51 @@ export default function Page({ user, theoryBook, page, stopTest }) {
 	const [prevPage, setPrevPage] = useState(contents[contentIndex-1])
 
 	return (
-		<section className={style.main}>
+		<>
 			<Sidebar />
-			<header className={style.header}>
-        		<User navn={user.name} src={user.userPic.url}/>
-			</header>
-			<TeoriNav array={parts}/>
-			<div className={style.chapterContent}>
-				{ contents[contentIndex].__typename === 'Page' ?
-				<>
-					<span>{parts[partsIndex].contents.findIndex(e => e.slug === slug.toString()) + 1} / {parts[partsIndex].contents.length}</span>
- 					<h1 className={style.title}>{page.title}</h1>
-					<div dangerouslySetInnerHTML={{__html: `${page.content.html}`}} className={style.richText}></div>
-					<div className={style.buttonsContainer}>
-						{contentIndex > 0 && contentIndex < contents.length -1 &&
-							<Link href="/dashboard/teori/[slug]" as={`/dashboard/teori/${prevPage.slug}`}>
-								<a className={components.lightButton}><span className={style.prev}><ChevronLeft /></span>Forrige</a>
-							</Link>
-						}
-						{contentIndex < contents.length -1 &&
-							<Link href="/dashboard/teori/[slug]" as={`/dashboard/teori/${nextPage.slug}`}>
-								<a className={components.lightButton}>Næste<span className={style.next}><ChevronRight /></span></a>
-							</Link>
-						}
-						{contentIndex === contents.length -1 &&
-							<Link href="/dashboard/teori">
-								<a className={components.blueButton}>Afslut</a>
-							</Link>
-						}
-					</div>
-				</> :
-				<>
-					<h1 className={style.title}>{stopTest.title}</h1>
-					<p className={style.richText}>Du kan nu lade dig teste i læsestoffet, du netop har gennemgået. Testen er for din egen skyld, så du kan holde øje med dine fremskridt. Du kan tage testen så mange gange du vil.</p>
-					{ stopTest.questions.map((question, i) => (
-						<StopTest question={question} key={i} />
-					))}
-					<Link href="/dashboard/teori/[slug]" as={`/dashboard/teori/${nextPage.slug}`}>
-						<a className={components.darkButton}>Afslut test og gå videre</a>
-					</Link>
-				</>
-				}
-			</div>
-			<Footer />
-		</section>
+			<section className={style.main}>
+				<header className={header.header}>
+					<User navn={user.name} src={user.userPic.url}/>
+					<Preferences />
+				</header>
+				<TeoriNav array={parts}/>
+				<div className={style.chapterContent}>
+					{ contents[contentIndex].__typename === 'Page' ?
+					<>
+						<span>{parts[partsIndex].contents.findIndex(e => e.slug === slug.toString()) + 1} / {parts[partsIndex].contents.length}</span>
+						<h1 className={style.title}>{page.title}</h1>
+						<div dangerouslySetInnerHTML={{__html: `${page.content.html}`}} className={style.richText}></div>
+						<div className={style.buttonsContainer}>
+							{contentIndex > 0 && contentIndex < contents.length -1 &&
+								<Link href="/dashboard/teori/[slug]" as={`/dashboard/teori/${prevPage.slug}`}>
+									<a className={components.lightButton}><span className={style.prev}><ChevronLeft /></span>Forrige</a>
+								</Link>
+							}
+							{contentIndex < contents.length -1 &&
+								<Link href="/dashboard/teori/[slug]" as={`/dashboard/teori/${nextPage.slug}`}>
+									<a className={components.lightButton}>Næste<span className={style.next}><ChevronRight /></span></a>
+								</Link>
+							}
+							{contentIndex === contents.length -1 &&
+								<Link href="/dashboard/teori">
+									<a className={components.blueButton}>Afslut</a>
+								</Link>
+							}
+						</div>
+					</> :
+					<>
+						<h1 className={style.title}>{stopTest.title}</h1>
+						<p className={style.richText}>Du kan nu lade dig teste i læsestoffet, du netop har gennemgået. Testen er for din egen skyld, så du kan holde øje med dine fremskridt. Du kan tage testen så mange gange du vil.</p>
+						{ stopTest.questions.map((question, i) => (
+							<StopTest question={question} key={i} />
+						))}
+						<Link href="/dashboard/teori/[slug]" as={`/dashboard/teori/${nextPage.slug}`}>
+							<a className={components.darkButton}>Afslut test og gå videre</a>
+						</Link>
+					</>
+					}
+				</div>
+			</section>
+		</>
 	)
 }

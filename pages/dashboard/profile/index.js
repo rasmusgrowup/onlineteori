@@ -97,7 +97,6 @@ export default function AccountPage({ user }) {
           </form>
         </div>
         <div className={style.category}>
-
         </div>
       </section>
     </>

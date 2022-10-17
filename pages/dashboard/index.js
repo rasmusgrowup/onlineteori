@@ -1,11 +1,16 @@
 // Imports
+import Sidebar from '../../components/Sidebar'
+import Preferences from '../../components/Preferences'
 import User from '../../components/User'
+import Calendar from '../../components/Calendar'
+
 import style from '../../styles/dashboard.module.scss'
+import header from '../../styles/header.module.scss'
+
+// Hygraph
 import { getSession } from 'next-auth/react'; // Session
 import { hygraphClient } from '../../lib/hygraph'; // GraphCMS
 import { gql } from 'graphql-request'; // gql
-import Sidebar from '../../components/Sidebar'
-import Footer from '../../components/Footer'
 
 const GetUserProfileById = gql`
   query GetUserProfileById($id: ID!) {
@@ -48,12 +53,12 @@ export default function Dashboard({ user, children }) {
     <>
       <Sidebar />
       <section className={style.main}>
-        <header className={style.header}>
+        <header className={header.header}>
           <User navn={user.name} src={user.userPic.url}/>
+          <Preferences />
         </header>
+        <Calendar />
         <h1>Velkommen tilbage, <br /> {user.name}</h1>
-        <div>{children}</div>
-        <Footer />
       </section>
     </>
   )

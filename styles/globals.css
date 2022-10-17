@@ -5,7 +5,7 @@
 
 html,
 body {
-  background-color: var(--primaryBackground);
+  background-color: var(--secondaryBackground);
   color:  var(--primaryFontColor);
   padding: 0;
   margin: 0;
@@ -33,38 +33,73 @@ a {
   --grey: rgb(177, 177, 177);
   --darkGrey: rgb(68, 68, 68);
   --primaryBackground: rgb(255, 255, 255);
-  --secondaryBackground: rgb(250, 250, 250);
+  --primaryBackgroundInverted: rgb(28, 31, 45);
+  --secondaryBackground: rgb(248, 248, 248);
   --primaryLineColor: rgb(244, 244, 244);
   --primaryFontColor: rgb(1, 11, 54);
-  --primaryButtonBg: rgb(244, 244, 244);
+  --primaryFontColorRgb: 1, 11, 54;
+  --primaryFontColorInverted: rgb(255, 255, 255);
+  --primaryButtonBg: rgb(240, 240, 240);
   --primaryAccent: rgb(24, 53, 248);
+  --secondaryAccent: rgb(255, 110, 110);
+  --thirdAccent: rgb(180, 90, 253);
   --darkBlue: rgb(1, 11, 54);
-  --hoverDarkBlue: rgb(21, 36, 101);
+  --hoverDarkBlue: rgb(2, 22, 84);
   --lightGrey: rgb(244, 244, 244);
+  --lightBtn: rgb(244, 244, 244);
+  --shadow: rgba(0,0,0,0.05);
+  --darkmode: rgb(1, 11, 54);
 }
 
 [data-theme='dark'] {
-  --primaryBackground: rgb(22, 25, 35);
-  --secondaryBackground: rgb(15, 18, 30);
+  --primaryBackground: rgb(28, 31, 45);
+  --primaryBackgroundInverted: rgb(255, 255, 255);
+  --secondaryBackground: rgb(20, 23, 38);
   --primaryLineColor: rgb(54, 54, 54);
   --primaryFontColor: rgb(255, 255, 255);
-  --primaryButtonBg: rgb(18, 20, 28);
-  --primaryAccent: rgb(241, 50, 255);
-  --darkBlue: rgb(91, 0, 171);
-  --hoverDarkBlue: rgb(67, 0, 126);
+  --primaryFontColorRgb: 255, 255, 255;
+  --primaryFontColorInverted: rgb(1, 11, 54);
+  --primaryButtonBg: rgb(13, 16, 29);
+  --primaryAccent: rgb(24, 53, 248);
+  --secondaryAccent: rgb(255, 110, 110);
+  --thirdAccent: rgb(180, 90, 253);
+  --darkBlue: rgb(47, 76, 253);
+  --hoverDarkBlue: rgb(39, 63, 206);
   --darkGrey: rgb(180, 180, 180);
   --lightGrey: rgb(45, 45, 45);
   --linkBlue: rgb(213, 44, 209);
+  --lightBtn: rgb(244, 244, 244);
+  --shadow: rgba(0,0,0,0.25);
+  --darkmode: rgb(255, 255, 255);
 }
 
-/*
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+[data-tooltip] {
+  position: relative;
 }
-*/
+
+[data-tooltip]::after {
+  background-color: var(--primaryBackgroundInverted);
+  border-radius: 3px;
+  box-shadow: 0 0 15px 2px rgba(100, 100, 100, 0.05);
+  content: attr(data-tooltip);
+  color: var(--primaryFontColorInverted);
+  display: block;
+  left: 50%;
+  font-size: 12px;
+  opacity: 0;
+  padding: 8px;
+  position: absolute;
+  pointer-events: none;
+  top: calc(100% + 10px);
+  transform: translate(-50%, -20px);
+  transition: all 150ms cubic-bezier(.25, .8, .25, 1);
+  z-index: 10;
+}
+
+[data-tooltip]:hover::after {
+  opacity: 1;
+  transform: translate(-50%, 0);
+  transition-duration: 300ms;
+  transition-delay: 1s;
+  transition-property: opacity, transform;
+}

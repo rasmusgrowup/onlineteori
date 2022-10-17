@@ -73,9 +73,9 @@
 }
 
 .imageContainer {
-  box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.075);
-  -webkit-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.075);
-  -moz-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.075);
+  //box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.075);
+  //-webkit-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.075);
+  //-moz-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.075);
   border-radius: 18px;
   max-width: $sm;
   overflow: hidden;
@@ -88,6 +88,8 @@
 
 .activeQuestion {
   display: block;
+  opacity: 1;
+  animation: fadeIn 250ms ease-in-out both;
 }
 
 .buttonsContainer {
@@ -99,4 +101,18 @@
   button {
     margin-right: 0.5em;
   }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.theoryTestResult {
+
 }

@@ -18,8 +18,6 @@ function User({ src, navn, konto, username }) {
         </div>
         <div className={style.info} >
           { navn && <span className={style.name}>{navn}</span>}
-          { konto && <span className={style.account}>{konto}</span>}
-          { username && <span className={style.username}>#{username}</span>}
         </div>
       </div>
     </>

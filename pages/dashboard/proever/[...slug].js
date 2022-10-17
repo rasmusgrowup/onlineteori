@@ -5,19 +5,17 @@ import { useState } from 'react'
 
 // Components
 import User from '../../../components/User' // User profile
-import Footer from '../../../components/Footer' // Footer for page
 import Sidebar from "../../../components/Sidebar";
+import Preferences from "../../../components/Preferences";
 
 import dash from '../../../styles/dashboard.module.scss' // Styling import
 import style from '../../../styles/test.module.scss' // Styling import
 import components from '../../../styles/components.module.scss' // Styling import
-import ChevronRight from '../../../components/Icons/ChevronRight' // Chevron right SVG icon
-import ChevronLeft from '../../../components/Icons/ChevronLeft' // Chevron right SVG icon
-
-import { getSession } from 'next-auth/react'; // Session import
+import header from '../../../styles/header.module.scss' // Styling import
 
 // Hygraph imports
 import { hygraphClient } from '../../../lib/hygraph'; // GraphCMS
+import { getSession } from 'next-auth/react'; // Session import
 import { gql } from 'graphql-request'; // gql
 
 const GetUserProfileById = gql`
@@ -150,37 +148,41 @@ export default function Page({ user, theoryTest }) {
     const [completed, setCompleted] = useState(null)
 
     return (
-        <section className={dash.main}>
+        <>
             <Sidebar />
-            <header className={dash.header}>
-                <User navn={user.name} src={user.userPic.url}/>
-            </header>
-            { completed &&
-                <div>
-                    Du fik {result.filter(Boolean).length} ud af {theoryTest.questions.length} rigtige.
+            <section className={dash.main}>
+                <header className={header.header}>
+                    <User navn={user.name} src={user.userPic.url}/>
+                    <Preferences />
+                </header>
+                { completed &&
+                    <div className={style.theoryTestResult}>
+                        <div className={style.testResult}>
+                            Du fik {result.filter(Boolean).length} ud af {theoryTest.questions.length} rigtige.
+                        </div>
+                    </div>
+                }
+                { theoryTest.questions.map((question, i) => (
+                    <Test
+                        question={question}
+                        key={i}
+                        index={index}
+                        active={index === i}
+                        completed={completed}
+                        questionsLength={theoryTest.questions.length}
+                        setResult={setResult}
+                        result={result}
+                    />
+                ))}
+                <div className={style.buttonsContainer}>
+                    { index > 0 && index <= theoryTest.questions.length -1 && <button onClick={() => setIndex(index-1)} className={components.blueButton}>Forrige</button>}
+                    { index < theoryTest.questions.length -1 && <button onClick={() => setIndex(index+1)} className={components.blueButton}>Næste</button>}
+                    { index === theoryTest.questions.length -1 && <button onClick={() => {
+                        setIndex(index + 1);
+                        setCompleted(true)
+                    }} className={components.blueButton}>Vis resultat</button>}
                 </div>
-            }
-            { theoryTest.questions.map((question, i) => (
-                <Test
-                    question={question}
-                    key={i}
-                    index={index}
-                    active={index === i}
-                    completed={completed}
-                    questionsLength={theoryTest.questions.length}
-                    setResult={setResult}
-                    result={result}
-                />
-            ))}
-            <div className={style.buttonsContainer}>
-                { index > 0 && index < theoryTest.questions.length -1 && <button onClick={() => setIndex(index-1)} className={components.blueButton}>Forrige</button>}
-                { index < theoryTest.questions.length -1 && <button onClick={() => setIndex(index+1)} className={components.blueButton}>Næste</button>}
-                { index === theoryTest.questions.length -1 && <button onClick={() => {
-                    setIndex(index + 1);
-                    setCompleted(true)
-                }} className={components.blueButton}>Vis resultat</button>}
-            </div>
-            <Footer />
-        </section>
+            </section>
+        </>
     )
 }
