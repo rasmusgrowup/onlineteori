@@ -5,7 +5,7 @@ import User from '../../../components/User'
 import Sidebar from '../../../components/Sidebar'
 import Preferences from '../../../components/Preferences'
 
-import style from '../../../styles/dashboard.module.scss'
+import style from '../../../styles/test.module.scss'
 import header from '../../../styles/header.module.scss'
 
 import Plus from '../../../public/gradients/plus.png' // Big plus gradient icon

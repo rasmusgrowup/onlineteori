@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { useState, useContext } from 'react' // useState for setting navigation open or closed
 import { useRouter } from 'next/router'
 
-import style from '../styles/dashboard.module.scss' // Styling import
+import style from '../styles/theory.module.scss' // Styling import
 import List from './Icons/List' // List SVG Icon
 
 export default function TeoriNav({ array }) {

@@ -8,7 +8,6 @@ import User from '../../../components/User' // User profile
 import Sidebar from "../../../components/Sidebar";
 import Preferences from "../../../components/Preferences";
 
-import dash from '../../../styles/dashboard.module.scss' // Styling import
 import style from '../../../styles/test.module.scss' // Styling import
 import components from '../../../styles/components.module.scss' // Styling import
 import header from '../../../styles/header.module.scss' // Styling import
@@ -150,7 +149,7 @@ export default function Page({ user, theoryTest }) {
     return (
         <>
             <Sidebar />
-            <section className={dash.main}>
+            <section className={style.main}>
                 <header className={header.header}>
                     <User navn={user.name} src={user.userPic.url}/>
                     <Preferences />

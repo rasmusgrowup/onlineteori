@@ -4,7 +4,7 @@ import User from '../../../components/User' // User profile
 import TeoriNav from '../../../components/TeoriNav' // Navigation for pages in theory book
 import Preferences from '../../../components/Preferences'
 
-import style from '../../../styles/dashboard.module.scss' // Styling import
+import style from '../../../styles/theory.module.scss' // Styling import
 import components from "../../../styles/components.module.scss";
 import header from "../../../styles/header.module.scss";
 

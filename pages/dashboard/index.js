@@ -57,7 +57,11 @@ export default function Dashboard({ user, children }) {
           <User navn={user.name} src={user.userPic.url}/>
           <Preferences />
         </header>
-        <h1>Velkommen tilbage, <br /> {user.name}</h1>
+        <div className={style.grid}>
+          <div className={style.gridItem} width='3' height='2'></div>
+          <div className={style.gridItem} width='3' height='2'></div>
+          <div className={style.gridItem} width='6' height='3'></div>
+        </div>
         <Calendar />
       </section>
     </>

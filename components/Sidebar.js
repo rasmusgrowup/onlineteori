@@ -1,8 +1,6 @@
-import Image from 'next/image'; // import image component
 import Link from 'next/link'; // import link component
-import Logo from '../public/OnlineteoriLogo.png'; // import logo file
 import sidebar from '../styles/sidebar.module.scss'; // styling specific to header
-import components from '../styles/components.module.scss'; // component related styling
+
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
