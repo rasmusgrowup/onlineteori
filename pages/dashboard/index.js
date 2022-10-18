@@ -81,7 +81,7 @@ export default function Dashboard({ user, children }) {
             <div className={style.boxChart}><BoxChart /></div>
             <span>Seneste prøver</span>
           </div>
-          <div className={style.gridItem} data-width='full' data-height='3' data-mobile-width='full'>
+          <div className={style.gridItem} data-width='full' data-height='2' data-mobile-width='full'>
             <div className={style.leftInner}></div>
             <div className={style.rightInner}></div>
           </div>

@@ -72,6 +72,7 @@
   top: 3em;
   right: 0;
   z-index: 9;
+  max-width: $s;
   width: calc(100% - 2em);
 
   @media (max-width: $m) {
