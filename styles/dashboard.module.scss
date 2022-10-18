@@ -20,13 +20,13 @@
 	@media (max-width: $m) {
 		height: auto;
 		max-width: 100%;
-		overflow: auto;
+		overflow: initial;
 		padding: 1em 1em 1.5em;
 		padding-bottom: 4em;
 		position: relative;
-		top: auto;
-		right: auto;
-		bottom: auto;
+		top: initial;
+		right: initial;
+		bottom: initial;
 		border-radius: 0;
 	}
 }
