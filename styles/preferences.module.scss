@@ -60,6 +60,47 @@
   }
 }
 
+.notifications {
+  background-color: var(--primaryBackground);
+  box-shadow: 0px 5px 50px 0px var(--shadow);
+  -webkit-box-shadow: 0px 5px 50px 0px var(--shadow);
+  -moz-box-shadow: 0px 5px 50px 0px var(--shadow);
+  border-radius: 3 * $radius;
+  color: var(--primaryFontColor);
+  padding: 1.5em;
+  position: absolute;
+  top: 3em;
+  right: 0;
+  z-index: 9;
+  width: calc(100% - 2em);
+
+  @media (max-width: $m) {
+    top: 4.2em;
+    right: 1em;
+  }
+
+  .list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .notification {
+    border-bottom: 1px solid var(--primaryLineColor);
+    line-height: 1;
+    padding: 1em 0;
+
+    &:first-of-type {
+      padding-top: 0.5em;
+    }
+
+    &:last-of-type {
+      border-bottom: none;
+      padding-bottom: 0.5em;
+    }
+  }
+}
+
 .search {
   align-items: center;
   background-color: var(--secondaryBackground);

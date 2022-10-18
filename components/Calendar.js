@@ -29,11 +29,15 @@ export default function Calendar() {
                 ))}
             </div>
             <div className={style.title}>Opgaver</div>
-            <div className={style.opgave}>
+            <div className={style.opgave} color='peach'>
                 <span>Gennemfør teoritest</span>
                 <span style={{ fontSize: '12px', opacity: '0.5' }}>Deadline: i aften kl. 20.00</span>
             </div>
-            <div className={style.opgave}>
+            <div className={style.opgave} color='purple'>
+                <span>Læs kapitel 5</span>
+                <span style={{ fontSize: '12px', opacity: '0.5' }}>Deadline: i morgen kl. 20.00</span>
+            </div>
+            <div className={style.opgave} color='green'>
                 <span>Læs kapitel 5</span>
                 <span style={{ fontSize: '12px', opacity: '0.5' }}>Deadline: i morgen kl. 20.00</span>
             </div>

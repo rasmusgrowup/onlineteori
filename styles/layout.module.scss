@@ -1,5 +1,9 @@
 @import 'sizes.scss';
 
+.main {
+	background-color: var(--secondaryBackground);
+}
+
 .hero {
 	align-content: center;
 	display: grid;

@@ -14,9 +14,9 @@
 
 	@media (max-width: $m) {
 		background-color: var(--secondaryBackground);
-		box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.14);
-		-webkit-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.14);
-		-moz-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.14);
+		box-shadow: 0px 5px 50px 0px var(--shadow);
+		-webkit-box-shadow: 0px 5px 50px 0px var(--shadow);
+		-moz-box-shadow: 0px 5px 50px 0px var(--shadow);
 		border-radius: 25px;
 		display: none;
 		height: auto;

@@ -3,7 +3,7 @@
 .calendar {
   background-color: var(--secondaryBackground);
   border-radius: 3 * $radius;
-  height: 540px;
+  //height: 540px;
   padding: 1.5em;
   position: absolute;
   right: 1.5em;
@@ -69,7 +69,7 @@
 }
 
 .opgave {
-  background-color: var(--secondaryAccent);
+  background-color: var(--redAccent);
   border-radius: 2 * $radius;
   color: var(--white);
   font-size: 16px;
@@ -82,6 +82,14 @@
   }
 }
 
-.opgave:last-of-type {
-  background-color: var(--thirdAccent);
+.opgave[color='red'] {
+  background-color: var(--redAccent);
+}
+
+.opgave[color='purple'] {
+  background-color: var(--purpleAccent);
+}
+
+.opgave[color='green'] {
+  background-color: var(--greenAccent);
 }

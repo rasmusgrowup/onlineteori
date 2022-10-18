@@ -3,9 +3,15 @@ import Sidebar from '../../components/Sidebar'
 import Preferences from '../../components/Preferences'
 import User from '../../components/User'
 import Calendar from '../../components/Calendar'
+import { useState } from 'react'
 
 import style from '../../styles/dashboard.module.scss'
 import header from '../../styles/header.module.scss'
+import typo from '../../styles/typo.module.scss'
+
+// Charts
+import CircleChart from "../../components/Icons/CircleChart";
+import BoxChart from "../../components/Icons/BoxChart";
 
 // Hygraph
 import { getSession } from 'next-auth/react'; // Session
@@ -49,7 +55,12 @@ export async function getServerSideProps(context) {
 }
 
 export default function Dashboard({ user, children }) {
-	return (
+  const [fullname, setFullname] = useState((user.name).split(' '))
+  const [firstname, setFirstname] = useState(fullname[0])
+  const [lastname, setLastname] = useState(fullname[1])
+  console.log(fullname)
+
+  return (
     <>
       <Sidebar />
       <section className={style.main}>
@@ -58,9 +69,24 @@ export default function Dashboard({ user, children }) {
           <Preferences />
         </header>
         <div className={style.grid}>
-          <div className={style.gridItem} width='3' height='2'></div>
-          <div className={style.gridItem} width='3' height='2'></div>
-          <div className={style.gridItem} width='6' height='3'></div>
+          <div className={style.gridItem} data-width='third' data-height='2' data-mobile-width='full'>
+            <h1 className={typo.gradient}>Halløj, <br />{firstname}</h1>
+            <span>Login streak: 5 dage</span>
+          </div>
+          <div className={style.gridItem} data-width='third' data-height='2' data-mobile-width='half'>
+            <div className={style.circleChart}><CircleChart /></div>
+            <span>Teori gennemført</span>
+          </div>
+          <div className={style.gridItem} data-width='third' data-height='2' data-mobile-width='half'>
+            <div className={style.boxChart}><BoxChart /></div>
+            <span>Seneste prøver</span>
+          </div>
+          <div className={style.gridItem} data-width='full' data-height='3' data-mobile-width='full'>
+            <div className={style.leftInner}></div>
+            <div className={style.rightInner}></div>
+          </div>
+          <div className={style.gridItem} data-width='fourth' data-height='2' data-mobile-width='full'></div>
+          <div className={style.gridItem} data-width='third' data-height='2' data-mobile-width='full'></div>
         </div>
         <Calendar />
       </section>
