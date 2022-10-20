@@ -8,15 +8,17 @@ import { useState } from 'react'
 import style from '../../styles/dashboard.module.scss'
 import header from '../../styles/header.module.scss'
 import typo from '../../styles/typo.module.scss'
+import components from '../../styles/components.module.scss' // Styling import
 
 // Charts
 import CircleChart from "../../components/Icons/CircleChart";
 import BoxChart from "../../components/Icons/BoxChart";
+import BigGraph from "../../components/Icons/BigGraph";
 
 // Hygraph
 import { getSession } from 'next-auth/react'; // Session
 import { hygraphClient } from '../../lib/hygraph'; // GraphCMS
-import { gql } from 'graphql-request'; // gql
+import { gql } from 'graphql-request';
 
 const GetUserProfileById = gql`
   query GetUserProfileById($id: ID!) {
@@ -58,6 +60,7 @@ export default function Dashboard({ user, children }) {
   const [fullname, setFullname] = useState((user.name).split(' '))
   const [firstname, setFirstname] = useState(fullname[0])
   const [lastname, setLastname] = useState(fullname[1])
+  const [selectedAnswer, setSelectedAnswer] = useState(null)
   console.log(fullname)
 
   return (
@@ -81,12 +84,37 @@ export default function Dashboard({ user, children }) {
             <div className={style.boxChart}><BoxChart /></div>
             <span>Seneste prøver</span>
           </div>
-          <div className={style.gridItem} data-width='full' data-height='2' data-mobile-width='full'>
-            <div className={style.leftInner}></div>
-            <div className={style.rightInner}></div>
+          <div className={style.gridItem} data-width='full' data-height='3' data-mobile-width='full'>
+            <h2 className={typo.gradient}>Dagens spørgsmål</h2>
+            <div className={style.quote}>Er det korrekt, at mønster dybden på bilens dæk som minimum skal være 1,6 mm.?</div>
+            <div className={components.testButtonContainer}>
+              <button
+                  onClick={() => setSelectedAnswer('ja')}
+                  className={ selectedAnswer === 'ja' ? `${components.altTestButtonSelected}` : `${components.altTestButton}`}
+              >
+                Ja
+              </button>
+              <button
+                  onClick={() => setSelectedAnswer('nej')}
+                  className={ selectedAnswer === 'nej' ? `${components.altTestButtonSelected}` : `${components.altTestButton}`}
+              >
+                Nej
+              </button>
+            </div>
           </div>
-          <div className={style.gridItem} data-width='fourth' data-height='2' data-mobile-width='full'></div>
-          <div className={style.gridItem} data-width='third' data-height='2' data-mobile-width='full'></div>
+          <div className={style.gridItem} data-width='fourth' data-height='2' data-mobile-width='full'>
+            <h1 className={typo.gradient}>Din ihærdighed</h1>
+            <div className={style.bigGraph}><BigGraph /></div>
+            <span>Antal point pr. login</span>
+          </div>
+          <div className={style.gridItem} data-width='third' data-height='1' data-mobile-width='full'>
+            <h1 className={typo.gradient} style={{ fontSize: '3em' }}>2.445</h1>
+            <span>Samlede point</span>
+          </div>
+          <div className={style.gridItem} data-width='third' data-height='1' data-mobile-width='full'>
+            <h1 className={typo.gradient} style={{ fontSize: '3em' }}>#3</h1>
+            <span>Placering på dit hold</span>
+          </div>
         </div>
         <Calendar />
       </section>

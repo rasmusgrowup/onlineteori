@@ -4,14 +4,15 @@
 	background-color: var(--primaryBackground);
 	border-radius: 20px;
 	bottom: 1.5em;
+	border-bottom: 0.5em solid var(--primaryBackground);
+	border-top: 0.5em solid var(--primaryBackground);
 	height: calc(100vh - 3em);
 	margin: 0 auto;
 	margin-right: 0;
 	max-width: calc(100% - $sidebarWidth - 1.5em);
 	overflow: hidden;
 	overflow-y: scroll;
-	padding: 1.5em;
-	padding-top: 4em;
+	padding: 4em 1.5em 1em;
 	position: fixed;
 	right: 1.5em;
 	top: 1.5em;
@@ -84,7 +85,7 @@
 		box-shadow: 0px 10px 30px 0px var(--shadow);
 		-webkit-box-shadow: 0px 10px 30px 0px var(--shadow);
 		-moz-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.05);
-		border-bottom: 1.2em solid var(--primaryBackground);
+		border-bottom: 1em solid var(--primaryBackground);
 		border-top: 1em solid var(--primaryBackground);
 		display: block;
 		margin-top: 0.5em;
@@ -119,20 +120,20 @@
 		font-weight: normal;
 
 		&:hover {
-			color: var(--primaryAccent);
+			color: var(--pinkAccent);
 		}
 	}
 
 	.completed {
-		color: var(--pureGreen);
+		color: var(--pinkAccent);
 	}
 
 	.active {
-		color: var(--primaryAccent);
+		color: var(--pinkAccent);
 	}
 
 	.testButton {
-		background-color: var(--lightGrey);
+		background-color: var(--lightBtn);
 		border-radius: 4px;
 		display: flex;
 		margin-top: 0.7em;
@@ -140,7 +141,7 @@
 		width: fit-content;
 
 		&:hover {
-			background-color: var(--hoverLightGrey);
+			background-color: var(--hoverLightBtn);
 		}
 	}
 }

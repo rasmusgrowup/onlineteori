@@ -5,7 +5,7 @@
 	background-color: var(--lightBtn);
 	border: none;
 	border-radius: 4px;
-	color: var(--primaryAccent);
+	color: var(--primaryFontColor);
 	cursor: pointer;
 	display: inline-flex;
 	font-size: 14px;
@@ -15,7 +15,7 @@
 	padding: 0 1.75em;
 
 	&:hover {
-		background-color: var(--hoverLightGrey);
+		background-color: var(--hoverLightBtn);
 	}
 }
 
@@ -101,6 +101,40 @@
 	}
 
 	.testButtonSelected {
+		align-items: center;
+		border: none;
+		background-color: var(--primaryAccent);
+		color: var(--white);
+		cursor: pointer;
+		display: inline-flex;
+		font-size: 14px;
+		height: 40px;
+		justify-content: center;
+		margin: 0;
+		padding: 0 1.75em;
+		width: 40px;
+	}
+
+	.altTestButton {
+		align-items: center;
+		border: none;
+		background-color: var(--primaryBackground);
+		color: var(--primaryFontColor);
+		cursor: pointer;
+		display: inline-flex;
+		font-size: 14px;
+		height: 40px;
+		justify-content: center;
+		margin: 0;
+		padding: 0 1.75em;
+		width: 40px;
+
+		&:hover {
+			background-color: var(--secondaryBackground);
+		}
+	}
+
+	.altTestButtonSelected {
 		align-items: center;
 		border: none;
 		background-color: var(--primaryAccent);

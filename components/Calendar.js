@@ -25,19 +25,15 @@ export default function Calendar() {
             </header>
             <div className={style.timestamps}>
                 { timeStamps.map((timestamp, i) => (
-                    <div key={i} className={ i === 4 ? `${style.timestamp} ${style.now}` : `${style.timestamp}`}>{timestamp}</div>
+                    <div key={i} className={ i === 2 ? `${style.timestamp} ${style.now}` : `${style.timestamp}`}>{timestamp}</div>
                 ))}
             </div>
             <div className={style.title}>Opgaver</div>
-            <div className={style.opgave} color='peach'>
+            <div className={style.opgave} color='red'>
                 <span>Gennemfør teoritest</span>
                 <span style={{ fontSize: '12px', opacity: '0.75' }}>Deadline: i aften kl. 20.00</span>
             </div>
             <div className={style.opgave} color='purple'>
-                <span>Læs kapitel 5</span>
-                <span style={{ fontSize: '12px', opacity: '0.75' }}>Deadline: i morgen kl. 20.00</span>
-            </div>
-            <div className={style.opgave} color='green'>
                 <span>Læs kapitel 5</span>
                 <span style={{ fontSize: '12px', opacity: '0.75' }}>Deadline: i morgen kl. 20.00</span>
             </div>

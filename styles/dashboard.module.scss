@@ -4,14 +4,15 @@
 	background-color: var(--primaryBackground);
 	border-radius: 20px;
 	bottom: 1.5em;
+	border-bottom: 0.5em solid var(--primaryBackground);
+	border-top: 0.5em solid var(--primaryBackground);
 	height: calc(100vh - 3em);
 	margin: 0 auto;
 	margin-right: 0;
 	max-width: calc(100% - $sidebarWidth - 1.5em);
 	overflow: hidden;
 	overflow-y: scroll;
-	padding: 1.5em;
-	padding-top: 5em;
+	padding: 4.5em 1.5em 1em;
 	position: fixed;
 	right: 1.5em;
 	top: 1.5em;
@@ -62,12 +63,13 @@
 	column-gap: 1em;
 	display: grid;
 	grid-template-columns: repeat(6, 1fr);
-	grid-auto-rows: 10vw auto;
+	grid-auto-rows: 9vw auto;
 	row-gap: 1em;
 	//height: 100%;
 	width: calc(100% - ($sidebarWidth * 1.3) - 1.5em);
 
 	@media (max-width: $m) {
+		grid-auto-rows: 40vw auto;
 		width: 100%;
 	}
 }
@@ -81,18 +83,30 @@
 	justify-content: space-evenly;
 	font-size: 14px;
 	overflow: hidden;
-	padding: 2.5em 1.5em;
+	padding: 2em 1.5em;
 	position: relative;
 	text-align: center;
 
 	span {
 		margin-top: 1.5em;
 	}
+
+	.quote {
+		font-size: 1.25em;
+	//	font-weight: bold;
+		width: 60%;
+	}
 }
 
 .gridItem h1 {
 	font-size: 2.5em;
-	line-height: 1;
+	line-height: 1.15;
+	margin: 0;
+}
+
+.gridItem h2 {
+	font-size: 2em;
+	line-height: 1.15;
 	margin: 0;
 }
 
@@ -152,6 +166,11 @@
 	display: flex;
 	height: 20 * $radius;
 	width: 35 * $radius;
+}
+
+.bigGraph {
+	display: flex;
+	width: 120 * $radius;
 }
 
 .leftInner {
