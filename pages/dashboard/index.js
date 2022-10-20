@@ -86,24 +86,30 @@ export default function Dashboard({ user, children }) {
           </div>
           <div className={style.gridItem} data-width='full' data-height='3' data-mobile-width='full'>
             <h2 className={typo.gradient}>Dagens spørgsmål</h2>
-            <div className={style.quote}>Er det korrekt, at mønster dybden på bilens dæk som minimum skal være 1,6 mm.?</div>
+            <div className={style.quote}>Hvad er den lovmæssige minimumsdybde på bilens dækmønster?</div>
             <div className={components.testButtonContainer}>
               <button
-                  onClick={() => setSelectedAnswer('ja')}
-                  className={ selectedAnswer === 'ja' ? `${components.altTestButtonSelected}` : `${components.altTestButton}`}
+                  onClick={() => setSelectedAnswer('0')}
+                  className={ selectedAnswer === '0' ? `${components.altTestButtonSelected}` : `${components.altTestButton}`}
               >
-                Ja
+                1,6 cm.
               </button>
               <button
-                  onClick={() => setSelectedAnswer('nej')}
-                  className={ selectedAnswer === 'nej' ? `${components.altTestButtonSelected}` : `${components.altTestButton}`}
+                  onClick={() => setSelectedAnswer('1')}
+                  className={ selectedAnswer === '1' ? `${components.altTestButtonSelected}` : `${components.altTestButton}`}
               >
-                Nej
+                0,6 cm.
+              </button>
+              <button
+                  onClick={() => setSelectedAnswer('2')}
+                  className={ selectedAnswer === '2' ? `${components.altTestButtonSelected}` : `${components.altTestButton}`}
+              >
+                1,6 mm.
               </button>
             </div>
           </div>
           <div className={style.gridItem} data-width='fourth' data-height='2' data-mobile-width='full'>
-            <h1 className={typo.gradient}>Din ihærdighed</h1>
+            <h2 className={typo.gradient}>Din ihærdighed</h2>
             <div className={style.bigGraph}><BigGraph /></div>
             <span>Antal point pr. login</span>
           </div>
