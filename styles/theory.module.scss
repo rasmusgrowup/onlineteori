@@ -115,7 +115,7 @@
 
 	a {
 		align-items: center;
-		color: var(--darkGrey);
+		color: var(--primaryFontColor);
 		cursor: pointer;
 		display: flex;
 		font-weight: normal;
@@ -128,15 +128,19 @@
 	.read {
 		align-items: center;
 		display: flex;
+		//text-decoration: line-through;
 	}
 
 	.read::after {
-		background-color: var(--pinkAccent);
-		border-radius: $radius;
-		content: '';
-		height: $radius;
+		//background-color: var(--pinkAccent);
+		//border-radius: $radius;
+		color: var(--primaryFontColor);
+		content: '\2713';
+		font-size: 10px;
+		line-height: 1;
+		//height: $radius;
 		margin-left: 0.5em;
-		width: $radius;
+		//width: $radius;
 	}
 
 	.completed {

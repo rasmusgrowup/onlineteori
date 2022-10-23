@@ -9,6 +9,7 @@ import style from '../../styles/dashboard.module.scss'
 import header from '../../styles/header.module.scss'
 import typo from '../../styles/typo.module.scss'
 import components from '../../styles/components.module.scss' // Styling import
+import styled from 'styled-components'
 
 // Charts
 import CircleChart from "../../components/Icons/CircleChart";
@@ -29,8 +30,29 @@ const GetUserProfileById = gql`
       userPic {
         url
       }
+      pages {
+        slug
+      }
     }
   }
+`;
+
+const GetTheoryBook = gql`
+	query GetTheoryBook {
+		theoryBook(where: {title: "Kategori B"}) {
+			id
+			parts {
+				contents {
+					... on Page {
+						id
+					}
+					... on StopTest {
+						id
+					}
+				}
+			}
+		}
+	}
 `;
 
 export async function getServerSideProps(context) {
@@ -49,18 +71,60 @@ export async function getServerSideProps(context) {
     id: session.userId,
   });
 
+  const { theoryBook } = await hygraphClient.request(GetTheoryBook);
+
   return {
     props: {
       user,
+      theoryBook,
     },
   };
 }
 
-export default function Dashboard({ user, children }) {
+const PieChart = styled.div`
+  --p: ${props => props.percent || "0"};
+  width: var(--w);
+  height: var(--w);
+  aspect-ratio: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+  font-size: 25px;
+  font-weight: bold;
+  font-family: sans-serif;
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    inset: 0;
+    background: radial-gradient(farthest-side, var(--c) 98%, #0000) top/var(--b) var(--b) no-repeat,
+    conic-gradient(var(--c) calc(var(--p) * 1%), #0000 0),
+    conic-gradient(var(--primaryLineColor) 100%, #0000 0);
+    -webkit-mask: radial-gradient(farthest-side, #0000 calc(99% - var(--b)), #000 calc(100% - var(--b)));
+    mask: radial-gradient(farthest-side, #0000 calc(99% - var(--b)), #000 calc(100% - var(--b)));
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    inset: calc(50% - var(--b) / 2);
+    background: var(--c);
+    transform: rotate(calc(var(--p) * 3.6deg)) translateY(calc(55% - var(--w) / 2));
+  }
+`
+
+export default function Dashboard({ user, children, theoryBook }) {
   const [fullname, setFullname] = useState((user.name).split(' '))
   const [firstname, setFirstname] = useState(fullname[0])
   const [lastname, setLastname] = useState(fullname[1])
   const [selectedAnswer, setSelectedAnswer] = useState(null)
+  const [contents, setContents] = useState(theoryBook.parts.map((p) => p.contents).flat())
+  const [userPages, setUserPages] = useState([...user.pages])
+  const [percent, setPercent] = useState(Math.round((100 / contents.length)*userPages.length))
 
   return (
     <>
@@ -76,7 +140,7 @@ export default function Dashboard({ user, children }) {
             <span>Login streak: 5 dage</span>
           </div>
           <div className={style.gridItem} data-width='third' data-height='2' data-mobile-width='half'>
-            <div className={style.circleChart}><CircleChart /></div>
+            <PieChart percent={percent}>{percent}%</PieChart>
             <span>Teori gennemført</span>
           </div>
           <div className={style.gridItem} data-width='third' data-height='2' data-mobile-width='half'>

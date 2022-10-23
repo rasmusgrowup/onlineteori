@@ -138,6 +138,7 @@ function Content({ content }) {
 export default function Teori({ user, theoryBook }) {
 	const [parts, setParts] = useState([...theoryBook.parts])
 	const [userPages, setUserPages] = useState([...user.pages])
+	const [percent, setPercent] = useState(Math.round((100 / parts.length)*userPages.length))
 
 	return (
 		<>

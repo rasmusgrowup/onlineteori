@@ -12,8 +12,7 @@ export default function TeoriNav({ array, userPages }) {
 	const [partsIndex, setPartsIndex] = useState(array.findIndex(e => e.contents.some(p => p.slug === slug.toString())))
 	const [contents, setContents] = useState(array.map((p) => p.contents).flat())
 	const [contentIndex, setContentIndex] = useState(contents.findIndex(e => e.slug === slug.toString()) +1)
-	const [countUserPages, setCountUserPages] = useState(userPages.length)
-	const [percent, setPercent] = useState(Math.round((100 / contents.length)*countUserPages))
+	const [percent, setPercent] = useState(Math.round((100 / contents.length)*userPages.length))
 	const [selected, setSelected] = useState(slug.toString() === "" ? array[0].title : array[partsIndex].title)
 
 	const handleNav = () => {

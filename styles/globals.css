@@ -54,6 +54,11 @@ a {
   --gradientTop: #fc00a4;
   --gradientBottom: #001d9f;
   --altBackground: rgb(240, 240, 240);
+
+  --w: 100px;
+  --c: var(--greenAccent);
+  --p: 60;
+  --b: 8px;
 }
 
 [data-theme='dark'] {
