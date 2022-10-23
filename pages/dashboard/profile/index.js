@@ -11,6 +11,15 @@ import Sidebar from '../../../components/Sidebar'
 
 // Icon imports
 import Pencil from "../../../components/Icons/Pencil";
+import Contact from "../../../components/Icons/Contact";
+import Address from "../../../components/Icons/Address";
+import Face from "../../../components/Icons/Face";
+import Id from "../../../components/Icons/Id";
+import Car from "../../../components/Icons/Car";
+import Card from "../../../components/Icons/Card";
+import Language from "../../../components/Icons/Language";
+import Email from "../../../components/Icons/Email";
+import Trashcan from "../../../components/Icons/Trashcan";
 
 // Hygraph imports
 import { gql } from 'graphql-request';
@@ -36,6 +45,8 @@ query GetUserProfileById($id: ID!) {
       zip
     }
     theoryProgress
+    age
+    gender
   }
 }
 `;
@@ -93,25 +104,36 @@ export default function AccountPage({ user }) {
         </header>
         <nav className={style.nav}>
           <ul>
-            <li>Profil</li>
-            <li>Addresse</li>
-            <li>ID</li>
-            <li>Køreskole</li>
-            <li>Abonnement</li>
-            <li>Sprog</li>
-            <li>Emails</li>
-            <li>Slet</li>
+            <li><Face />Brugerinfo</li>
+            <li><Contact />Kontaktoplsyninger</li>
+            <li><Address />Addresse</li>
+            <li><Id />ID</li>
+            <li><Car />Køreskole</li>
+            <li><Card />Abonnement</li>
+            <li><Language />Sprog</li>
+            <li><Email />Emails</li>
+            <li><Trashcan />Slet</li>
           </ul>
         </nav>
         <div className={style.container}>
           <h1>Indstillinger</h1>
           <section className={style.section}>
             <header className={style.header}>
-              <h3>Navn og kontaktoplysninger</h3>
+              <h3>Brugerinfo</h3>
               <button className={style.pencil}><Pencil /></button>
             </header>
             <div className={style.name}>
               <p>{user.name}</p>
+              <p>@{user.username}</p>
+              <p>{user.age} år, {user.gender}</p>
+            </div>
+          </section>
+          <section className={style.section}>
+            <header className={style.header}>
+              <h3>Kontaktoplysninger</h3>
+              <button className={style.pencil}><Pencil /></button>
+            </header>
+            <div className={style.name}>
               <p>{user.email}</p>
               <p>+45 {user.phone}</p>
             </div>

@@ -75,6 +75,17 @@
     margin: 0;
     padding: 0;
   }
+
+  ul li {
+    align-items: center;
+    display: flex;
+  }
+
+  ul li svg {
+    margin-right: 0.5em;
+    height: 0.9em;
+    width: 0.9em;
+  }
 }
 
 .container {

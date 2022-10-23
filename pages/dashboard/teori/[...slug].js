@@ -36,6 +36,7 @@ const GetUserProfileById = gql`
 			pages {
 				slug
 			}
+			point
 	    }
 	}
 `;
@@ -236,6 +237,7 @@ export default function Page({ user, theoryBook, page, stopTest }) {
 	const router = useRouter()
 	const slug = router.query.slug || [];
 	const slugString = slug.toString();
+	const [userPoints, setUserPoints] = useState(user.point)
 	const [parts, setParts] = useState([...theoryBook.parts])
 	const [userPages, setUserPages] = useState([...user.pages])
 	const [partsIndex, setPartsIndex] = useState(parts.findIndex(e => e.contents.some(p => p.slug === slug.toString())))
@@ -259,11 +261,31 @@ export default function Page({ user, theoryBook, page, stopTest }) {
 		}
 	};
 
+	const updatePoints = async ({points}) => {
+		try {
+			const res = await fetch('/api/update-points', {
+				method: 'POST',
+				body: JSON.stringify({points}),
+			});
+
+			if (!res.ok) {
+				throw new Error(res.statusText);
+			}
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
 	useEffect(() => {
-		updateProgress({slugString})
+		updateProgress({slugString, userPoints})
+		if (!userPages.some(e => e.slug === slug.toString())) {
+			console.log("true")
+			let points = userPoints + 50;
+			updatePoints({points})
+		}
 	}, [])
 
-	console.log(slugString)
+	console.log(userPoints)
 
 	return (
 		<>

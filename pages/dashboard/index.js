@@ -3,7 +3,7 @@ import Sidebar from '../../components/Sidebar'
 import Preferences from '../../components/Preferences'
 import User from '../../components/User'
 import Calendar from '../../components/Calendar'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import style from '../../styles/dashboard.module.scss'
 import header from '../../styles/header.module.scss'
@@ -33,6 +33,7 @@ const GetUserProfileById = gql`
       pages {
         slug
       }
+      point
     }
   }
 `;
@@ -83,6 +84,9 @@ export async function getServerSideProps(context) {
 
 const PieChart = styled.div`
   --p: ${props => props.percent || "0"};
+  --w: 100px;
+  --c: var(--greenAccent);
+  --b: 8px;
   width: var(--w);
   height: var(--w);
   aspect-ratio: 1;
@@ -117,14 +121,22 @@ const PieChart = styled.div`
   }
 `
 
-export default function Dashboard({ user, children, theoryBook }) {
+export default function Dashboard({ user, theoryBook }) {
+  const [loaded, setLoaded] = useState(false)
   const [fullname, setFullname] = useState((user.name).split(' '))
   const [firstname, setFirstname] = useState(fullname[0])
   const [lastname, setLastname] = useState(fullname[1])
   const [selectedAnswer, setSelectedAnswer] = useState(null)
   const [contents, setContents] = useState(theoryBook.parts.map((p) => p.contents).flat())
   const [userPages, setUserPages] = useState([...user.pages])
-  const [percent, setPercent] = useState(Math.round((100 / contents.length)*userPages.length))
+  const [percent, setPercent] = useState(Math.round((100 / contents.length) * userPages.length))
+  const [points, setPoints] = useState(user.point)
+
+  useEffect(() => {
+    setLoaded(true)
+  }, [])
+
+  console.log(percent)
 
   return (
     <>
@@ -140,7 +152,7 @@ export default function Dashboard({ user, children, theoryBook }) {
             <span>Login streak: 5 dage</span>
           </div>
           <div className={style.gridItem} data-width='third' data-height='2' data-mobile-width='half'>
-            <PieChart percent={percent}>{percent}%</PieChart>
+            { loaded ? <PieChart percent={percent}>{percent}%</PieChart> : <div style={{ height: '100px', width: '100px'}} /> }
             <span>Teori gennemført</span>
           </div>
           <div className={style.gridItem} data-width='third' data-height='2' data-mobile-width='half'>
@@ -177,11 +189,11 @@ export default function Dashboard({ user, children, theoryBook }) {
             <span>Antal point pr. login</span>
           </div>
           <div className={style.gridItem} data-width='third' data-height='1' data-mobile-width='full'>
-            <h1 className={typo.gradient} style={{ fontSize: '3em' }}>2.445</h1>
+            <h1 className={typo.gradient} style={{ fontSize: '3em' }}>{points}</h1>
             <span>Samlede point</span>
           </div>
           <div className={style.gridItem} data-width='third' data-height='1' data-mobile-width='full'>
-            <h1 className={typo.gradient} style={{ fontSize: '3em' }}>#3</h1>
+            <h1 className={typo.gradient} style={{ fontSize: '3em' }}>#1</h1>
             <span>Placering på dit hold</span>
           </div>
         </div>

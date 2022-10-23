@@ -11,7 +11,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import Overblik from '../components/Icons/Overblik';
 import Settings from '../components/Icons/Settings';
 import Teori from '../components/Icons/Teori';
-import Tests from '../components/Icons/Overblik';
+import Tests from '../components/Icons/Tests';
 import Chat from '../components/Icons/Chat';
 import SignOut from '../components/Icons/SignOut';
 import MenuIcon from '../components/Icons/MenuIcon';
