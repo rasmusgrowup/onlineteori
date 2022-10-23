@@ -76,6 +76,27 @@
 	}
 }
 
+.deleteButton {
+	align-items: center;
+	background-color: var(--red);
+	border: none;
+	border-radius: 4px;
+	color: var(--white);
+	cursor: pointer;
+	display: inline-flex;
+	font-size: 14px;
+	height: 40px;
+	justify-content: center;
+	margin: 0;
+	padding: 0 1.75em;
+	//text-transform: uppercase;
+	width: 100%;
+
+	&:hover {
+		background-color: var(--hoverRed);
+	}
+}
+
 .testButtonContainer {
 	background-color: var(--primaryBackground);
 	border: 1px solid var(--lightGrey);

@@ -11,7 +11,7 @@ export default function BigGraph() {
             </defs>
             <g id="Group_74" data-name="Group 74" transform="translate(-163.5 -456.678)">
                 <path id="Path_32" data-name="Path 32" d="M0,132.089l122.172-23.56L241.02,49.591,411.676,74.265,551.87,5.689l128.1,21.692L731,0V181H0Z" transform="translate(179 458)" fill="url(#linear-gradient)"/>
-                <path id="Path_33" data-name="Path 33" d="M0,132.089l122.172-23.56L241.02,49.591,411.676,74.265,551.87,5.689l128.1,21.692L731,0" transform="translate(179 458)" fill="none" stroke="var(--purpleAccent)" stroke-width="3"/>
+                <path id="Path_33" data-name="Path 33" d="M0,132.089l122.172-23.56L241.02,49.591,411.676,74.265,551.87,5.689l128.1,21.692L731,0" transform="translate(179 458)" fill="none" stroke="var(--purpleAccent)" strokeWidth="3"/>
             </g>
         </svg>
     )

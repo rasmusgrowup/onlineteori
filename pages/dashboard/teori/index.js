@@ -25,6 +25,7 @@ const GetUserProfileById = gql`
       userPic {
         url
       }
+      theoryProgress
     }
   }
 `;
@@ -133,6 +134,7 @@ function Content({ content }) {
 
 export default function Teori({ user, theoryBook }) {
 	const [parts, setParts] = useState([...theoryBook.parts])
+	const [userPages, setUserPages] = useState([...user.pages])
 
 	return (
 		<>
@@ -142,7 +144,7 @@ export default function Teori({ user, theoryBook }) {
 					<User navn={user.name} src={user.userPic.url}/>
 					<Preferences />
 				</header>
-				<TeoriNav array={parts}/>
+				<TeoriNav array={parts} userPages={userPages}/>
 				<Content content={theoryBook}/>
 			</section>
 		</>

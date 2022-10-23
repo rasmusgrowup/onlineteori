@@ -20,6 +20,8 @@ a {
 
 :root {
   --white: white;
+  --red: #ff0c44;
+  --hoverRed: #ff3161;
   --lightBlue: #C4C8D8;
   --hoverLightGrey: #f9f9f9;
   --linkBlue: #0A25D9;
@@ -55,6 +57,8 @@ a {
 }
 
 [data-theme='dark'] {
+  --red: #ff0c44;
+  --hoverRed: #ff3161;
   --primaryBackground: rgb(28, 31, 45);
   --primaryBackgroundInverted: rgb(255, 255, 255);
   --secondaryBackground: rgb(20, 23, 38);

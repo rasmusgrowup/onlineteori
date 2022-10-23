@@ -1,0 +1,147 @@
+@import "sizes";
+
+.main {
+  background-color: var(--primaryBackground);
+  border-radius: 20px;
+  bottom: 1.5em;
+  border-bottom: 0.5em solid var(--primaryBackground);
+  border-top: 0.5em solid var(--primaryBackground);
+  height: calc(100vh - 3em);
+  margin: 0 auto;
+  margin-right: 0;
+  max-width: calc(100% - $sidebarWidth - 1.5em);
+  overflow: hidden;
+  overflow-y: scroll;
+  padding: 1.5em 1.5em 1em;
+  position: fixed;
+  right: 1.5em;
+  top: 1.5em;
+  width: 100%;
+
+  @media (max-width: $m) {
+    border: none;
+    height: auto;
+    max-width: 100%;
+    overflow: initial;
+    padding: 1em 1em 1.5em;
+    padding-bottom: 4em;
+    position: relative;
+    top: initial;
+    right: initial;
+    bottom: initial;
+    border-radius: 0;
+  }
+}
+
+.userForm {
+  display: flex;
+}
+
+.userPic {
+  border-radius: 4 * $radius;
+  height: 120px;
+  overflow: hidden;
+  width: 120px;
+}
+
+.form {
+  font-size: 1.2em;
+  margin-left: 1em;
+
+  input {
+    border: 0;
+    border-bottom: 1px solid var(--lightGrey);
+    font-size: 1em;
+    display: block;
+  }
+
+  button {
+    margin-top: 0.7em;
+  }
+}
+
+.nav {
+  float: left;
+  left: 0;
+  margin-top: 3em;
+  position: sticky;
+  top: -0.5em;
+  width: $sidebarWidth;
+
+  ul {
+    font-size: 16px;
+    line-height: 2.5;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.container {
+  border-left: 1px solid var(--primaryLineColor);
+  margin-left: $sidebarWidth;
+  margin-right: auto;
+  max-width: 3 * $sidebarWidth;
+  padding-left: 3em;
+  margin-top: 3em;
+  width: 100%;
+}
+
+.section {
+  margin-bottom: 3em;
+}
+
+.section .header {
+  align-items: flex-start;
+  display: flex;
+}
+
+.section .header h3 {
+  margin-top: 0;
+}
+
+.section .header .pencil {
+  background-color: var(--secondaryBackground);
+  border: none;
+  border-radius: $radius;
+  cursor: pointer;
+  height: 7 * $radius;
+  margin-left: 1em;
+  width: 7 * $radius;
+
+  svg {
+    height: 1em;
+    width: 1em;
+  }
+}
+
+/*
+.section form input {
+  background-color: var(--primaryBackground);
+  border: 1px solid var(--primaryLineColor);
+  border-radius: $radius;
+  height: 3 * $radius;
+  width: 3 * $radius;
+} */
+
+.section form label {
+  margin-left: 0.5em;
+}
+
+.explainor {
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  line-height: 2;
+  opacity: 0.8;
+}
+
+.userId,
+.address,
+.name,
+.school {
+  background-color: var(--secondaryBackground);
+  border-radius: 3 * $radius;
+  color: var(--pinkAccent);
+  font-family: monospace;
+  padding: 1.5em;
+}

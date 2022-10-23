@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 // Components
 import Sidebar from '../../../components/Sidebar' // Sidebar for page
@@ -25,11 +25,16 @@ import { gql } from 'graphql-request'; // gql
 const GetUserProfileById = gql`
 	query GetUserProfileById($id: ID!) {
 	    user: nextUser(where: { id: $id }) {
+	    	id
 			email
 			name
 			username
 			userPic {
 				url
+			}
+			theoryProgress
+			pages {
+				slug
 			}
 	    }
 	}
@@ -187,8 +192,6 @@ function StopTest({ question, i}) {
 		setShowResult(false)
 	}
 
-	console.log(passed)
-
 	return (
 		<div className={style.questionContainer} key={i}>
 			<div className={style.imageContainer} style={{ display: 'none' }}>
@@ -232,12 +235,35 @@ function StopTest({ question, i}) {
 export default function Page({ user, theoryBook, page, stopTest }) {
 	const router = useRouter()
 	const slug = router.query.slug || [];
+	const slugString = slug.toString();
 	const [parts, setParts] = useState([...theoryBook.parts])
+	const [userPages, setUserPages] = useState([...user.pages])
 	const [partsIndex, setPartsIndex] = useState(parts.findIndex(e => e.contents.some(p => p.slug === slug.toString())))
 	const [contents, setContents] = useState(parts.map((p) => p.contents).flat())
 	const [contentIndex, setContentIndex] = useState(contents.findIndex(e => e.slug === slug.toString()))
 	const [nextPage, setNextPage] = useState(contents[contentIndex+1])
 	const [prevPage, setPrevPage] = useState(contents[contentIndex-1])
+
+	const updateProgress = async ({slugString}) => {
+		try {
+			const res = await fetch('/api/update-progress', {
+				method: 'POST',
+				body: JSON.stringify({slugString}),
+			});
+
+			if (!res.ok) {
+				throw new Error(res.statusText);
+			}
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	useEffect(() => {
+		updateProgress({slugString})
+	}, [])
+
+	console.log(slugString)
 
 	return (
 		<>
@@ -247,7 +273,7 @@ export default function Page({ user, theoryBook, page, stopTest }) {
 					<User navn={user.name} src={user.userPic.url}/>
 					<Preferences />
 				</header>
-				<TeoriNav array={parts}/>
+				<TeoriNav array={parts} userPages={userPages}/>
 				<div className={style.chapterContent}>
 					{ contents[contentIndex].__typename === 'Page' ?
 					<>

@@ -43,7 +43,7 @@
 	padding-top: 0;
 	position: absolute;
 	left: 1em;
-	top: 5.5em;
+	top: 4.5em;
 	width: 100%;
 	z-index: 1;
 
@@ -125,6 +125,20 @@
 		}
 	}
 
+	.read {
+		align-items: center;
+		display: flex;
+	}
+
+	.read::after {
+		background-color: var(--pinkAccent);
+		border-radius: $radius;
+		content: '';
+		height: $radius;
+		margin-left: 0.5em;
+		width: $radius;
+	}
+
 	.completed {
 		color: var(--pinkAccent);
 	}
@@ -161,7 +175,7 @@
 
 .chapterContent {
 	margin-left: 16em;
-	margin-top: 1em;
+	margin-top: 0;
 	max-width: $sm;
 
 	@media (max-width: $m) {

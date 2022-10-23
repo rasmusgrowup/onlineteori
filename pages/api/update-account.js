@@ -32,7 +32,7 @@ export default async (req, res) => {
     res.json(user);
   } else {
     res.send({
-      error: 'You must be sign in to update your account.',
+      error: 'You must be signed in to update your account.',
     });
   }
 };

@@ -61,7 +61,6 @@ export default function Dashboard({ user, children }) {
   const [firstname, setFirstname] = useState(fullname[0])
   const [lastname, setLastname] = useState(fullname[1])
   const [selectedAnswer, setSelectedAnswer] = useState(null)
-  console.log(fullname)
 
   return (
     <>
@@ -109,7 +108,7 @@ export default function Dashboard({ user, children }) {
             </div>
           </div>
           <div className={style.gridItem} data-width='fourth' data-height='2' data-mobile-width='full'>
-            <h2 className={typo.gradient}>Din ihærdighed</h2>
+            <h2 className={typo.gradient}>Udvikling i point</h2>
             <div className={style.bigGraph}><BigGraph /></div>
             <span>Antal point pr. login</span>
           </div>
