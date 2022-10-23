@@ -92,7 +92,7 @@ const PieChart = styled.div`
   margin: 5px;
   font-size: 25px;
   font-weight: bold;
-  font-family: sans-serif;
+  font-family: monospace;
   position: relative;
 
   &:before {
