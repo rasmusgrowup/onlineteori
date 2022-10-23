@@ -26,6 +26,9 @@ const GetUserProfileById = gql`
         url
       }
       theoryProgress
+      pages {
+      	slug
+	  }
     }
   }
 `;
