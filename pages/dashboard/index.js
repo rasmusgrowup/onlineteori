@@ -113,7 +113,7 @@ const PieChart = styled.div`
     border-radius: 50%;
     inset: calc(50% - var(--b) / 2);
     background: var(--c);
-    transform: rotate(calc(var(--p) * 3.6deg)) translateY(calc(55% - var(--w) / 2));
+    transform: rotate(calc(var(--p) * 3.6deg)) translateY(calc(50% - var(--w) / 2));
   }
 `
 

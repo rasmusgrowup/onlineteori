@@ -5,6 +5,9 @@ const nextConfig = {
   images: {
     domains: ['media.graphcms.com', 'media.graphassets.com'],
   },
+  experimental: {
+    forceSwcTransforms: true,
+  },
 }
 
 module.exports = nextConfig
