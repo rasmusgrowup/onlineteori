@@ -68,6 +68,10 @@
   top: -0.5em;
   width: $sidebarWidth;
 
+  @media (max-width: $m) {
+    display: none;
+  }
+
   ul {
     font-size: 16px;
     line-height: 2.5;
@@ -76,9 +80,23 @@
     padding: 0;
   }
 
-  ul li {
+  ul li,
+  ul .active {
     align-items: center;
+    border-radius: 2 * $radius;
+    cursor: pointer;
     display: flex;
+    margin-bottom: 2px;
+    margin-right: 1.5em;
+    padding-left: 1em;
+
+    &:hover {
+      background-color: var(--hoverLightBtn);
+    }
+  }
+
+  ul .active {
+    background-color: var(--hoverLightBtn);
   }
 
   ul li svg {
@@ -96,6 +114,14 @@
   padding-left: 3em;
   margin-top: 3em;
   width: 100%;
+
+  @media (max-width: $m) {
+    border-left: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    padding-left: 0;
+  }
 }
 
 .section {

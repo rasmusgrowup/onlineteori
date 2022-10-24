@@ -17,9 +17,10 @@ import Face from "../../../components/Icons/Face";
 import Id from "../../../components/Icons/Id";
 import Car from "../../../components/Icons/Car";
 import Card from "../../../components/Icons/Card";
-import Language from "../../../components/Icons/Language";
 import Email from "../../../components/Icons/Email";
 import Trashcan from "../../../components/Icons/Trashcan";
+import ChineseSign from "../../../components/Icons/ChineseSign";
+
 
 // Hygraph imports
 import { gql } from 'graphql-request';
@@ -104,13 +105,13 @@ export default function AccountPage({ user }) {
         </header>
         <nav className={style.nav}>
           <ul>
-            <li><Face />Brugerinfo</li>
+            <li className={style.active}><Face />Brugerinfo</li>
             <li><Contact />Kontaktoplsyninger</li>
             <li><Address />Addresse</li>
             <li><Id />ID</li>
             <li><Car />Køreskole</li>
             <li><Card />Abonnement</li>
-            <li><Language />Sprog</li>
+            <li><ChineseSign />Sprog</li>
             <li><Email />Emails</li>
             <li><Trashcan />Slet</li>
           </ul>

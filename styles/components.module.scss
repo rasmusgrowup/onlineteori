@@ -102,7 +102,8 @@
 	border: 1px solid var(--lightGrey);
 	border-radius: 4px;
 
-	.testButton {
+	.testButton,
+	.testButtonSelected {
 		align-items: center;
 		border: none;
 		background-color: var(--primaryBackground);
@@ -122,21 +123,16 @@
 	}
 
 	.testButtonSelected {
-		align-items: center;
-		border: none;
 		background-color: var(--primaryAccent);
 		color: var(--white);
-		cursor: pointer;
-		display: inline-flex;
-		font-size: 14px;
-		height: 40px;
-		justify-content: center;
-		margin: 0;
-		padding: 0 1.75em;
-		width: 40px;
+
+		&:hover {
+			background-color: var(--primaryAccent);
+		}
 	}
 
-	.altTestButton {
+	.altTestButton,
+	.altTestButtonSelected {
 		align-items: center;
 		border: none;
 		background-color: var(--primaryBackground);
@@ -148,7 +144,7 @@
 		justify-content: center;
 		margin: 0;
 		padding: 0 1.75em;
-		width: 100px;
+		width: 90px;
 
 		&:hover {
 			background-color: var(--secondaryBackground);
@@ -156,18 +152,12 @@
 	}
 
 	.altTestButtonSelected {
-		align-items: center;
-		border: none;
 		background-color: var(--primaryAccent);
 		color: var(--white);
-		cursor: pointer;
-		display: inline-flex;
-		font-size: 14px;
-		height: 40px;
-		justify-content: center;
-		margin: 0;
-		padding: 0 1.75em;
-		width: 100px;
+
+		&:hover {
+			background-color: var(--primaryAccent);
+		}
 	}
 
 	button:first-of-type {
