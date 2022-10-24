@@ -1,6 +1,7 @@
 // Default imports
+import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import style from '../../../styles/profile.module.scss' // Dashboard styling
 import components from '../../../styles/components.module.scss' // Component styling
 import header from "../../../styles/header.module.scss";
@@ -21,6 +22,8 @@ import Email from "../../../components/Icons/Email";
 import Trashcan from "../../../components/Icons/Trashcan";
 import ChineseSign from "../../../components/Icons/ChineseSign";
 
+// Smooth scroll
+import smoothscroll from 'smoothscroll-polyfill';
 
 // Hygraph imports
 import { gql } from 'graphql-request';
@@ -75,7 +78,7 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default function AccountPage({ user }) {
+const SmoothScroll = ({ user }) => {
   const router = useRouter()
   const [checked, setChecked] = useState(true)
   const { handleSubmit, register } = useForm({ defaultValues: user });
@@ -95,30 +98,34 @@ export default function AccountPage({ user }) {
     } router.reload(window.location.pathname)
   };
 
+  useEffect(() => {
+    smoothscroll.polyfill();
+  }, [])
+
   return (
     <>
       <Sidebar />
-      <section className={style.main}>
+      <section className={style.main} style={{ scrollBehavior: 'smooth' }}>
         <header className={header.header}>
           <User navn={user.name} src={user.userPic.url}/>
           <Preferences />
         </header>
         <nav className={style.nav}>
           <ul>
-            <li className={style.active}><Face />Brugerinfo</li>
-            <li><Contact />Kontaktoplsyninger</li>
-            <li><Address />Addresse</li>
-            <li><Id />ID</li>
-            <li><Car />Køreskole</li>
-            <li><Card />Abonnement</li>
-            <li><ChineseSign />Sprog</li>
-            <li><Email />Emails</li>
-            <li><Trashcan />Slet</li>
+            <Link className={style.active} href="#info"><a><Face />Brugerinfo</a></Link>
+            <Link href="#contact"><a><Contact />Kontaktoplsyninger</a></Link>
+            <Link href="#address"><a><Address />Addresse</a></Link>
+            <Link href="#id"><a><Id />ID</a></Link>
+            <Link href="#school"><a><Car />Køreskole</a></Link>
+            <Link href="#sub"><a><Card />Abonnement</a></Link>
+            <Link href="#lang"><a><ChineseSign />Sprog</a></Link>
+            <Link href="#emails"><a><Email />Emails</a></Link>
+            <Link href="#delete"><a><Trashcan />Slet</a></Link>
           </ul>
         </nav>
         <div className={style.container}>
           <h1>Indstillinger</h1>
-          <section className={style.section}>
+          <section className={style.section} id="info">
             <header className={style.header}>
               <h3>Brugerinfo</h3>
               <button className={style.pencil}><Pencil /></button>
@@ -129,7 +136,7 @@ export default function AccountPage({ user }) {
               <p>{user.age} år, {user.gender}</p>
             </div>
           </section>
-          <section className={style.section}>
+          <section className={style.section} id="contact">
             <header className={style.header}>
               <h3>Kontaktoplysninger</h3>
               <button className={style.pencil}><Pencil /></button>
@@ -139,14 +146,14 @@ export default function AccountPage({ user }) {
               <p>+45 {user.phone}</p>
             </div>
           </section>
-          <section className={style.section}>
+          <section className={style.section} id="address">
             <header className={style.header}>
               <h3>Adresse</h3>
               <button className={style.pencil}><Pencil /></button>
             </header>
             <div className={style.address}>{user.address.street} {user.address.floor}, {user.address.city} {user.address.zip}</div>
           </section>
-          <section className={style.section}>
+          <section className={style.section} id="id">
             <header className={style.header}>
               <h3>ID</h3>
             </header>
@@ -155,7 +162,7 @@ export default function AccountPage({ user }) {
               når der oprettes support-sager, til fakturering eller hvis din kørelærer
               skal oprette nye produkter til dig.</p>
           </section>
-          <section className={style.section}>
+          <section className={style.section} id="school">
             <header className={style.header}>
               <h3>Tilknyttet køreskole</h3>
             </header>
@@ -165,7 +172,7 @@ export default function AccountPage({ user }) {
             følge med i dine fremskridt, se dine point, oprette begivenheder i din kalender og uddele
             opgaver.</p>
           </section>
-          <section className={style.section}>
+          <section className={style.section} id="sub">
             <header className={style.header}>
               <h3>Abonnement</h3>
             </header>
@@ -174,7 +181,7 @@ export default function AccountPage({ user }) {
               når der oprettes support-sager, til fakturerings eller hvis din kørelærer
               skal oprette nye produkter til dig.</p>
           </section>
-          <section className={style.section}>
+          <section className={style.section} id="lang">
             <header className={style.header}>
               <h3>Sprog</h3>
               <button className={style.pencil}><Pencil /></button>
@@ -184,7 +191,7 @@ export default function AccountPage({ user }) {
             benytte dig af i programmet her. Det gælder både når du tager prøver, læser i teoribogen og
             på selve interfacet.</p>
           </section>
-          <section className={style.section}>
+          <section className={style.section} id="emails">
             <header className={style.header}>
               <h3>Emails</h3>
             </header>
@@ -196,7 +203,7 @@ export default function AccountPage({ user }) {
               benytte dig af i programmet her. Det gælder både når du tager prøver, læser i teoribogen og
               på selve interfacet.</p>
           </section>
-          <section className={style.section}>
+          <section className={style.section} id='delete'>
             <header className={style.header}>
               <h3>Slet konto</h3>
             </header>
@@ -238,4 +245,8 @@ export default function AccountPage({ user }) {
       </section>
     </>
   );
+}
+
+export default function Profile({ user }) {
+  return <SmoothScroll user={user}/>
 }

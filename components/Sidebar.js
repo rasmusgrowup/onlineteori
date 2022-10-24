@@ -47,7 +47,7 @@ function BackendSidebar({ displayMenu }) {
             </a>
           </Link>
           <Link href='/dashboard/profile' passHref>
-            <a style={{ display: 'none' }} className={router.pathname === '/dashboard/profile' ? `${sidebar.sidebarItem} ${sidebar.active}` : `${sidebar.sidebarItem}`}>
+            <a className={router.pathname === '/dashboard/profile' ? `${sidebar.sidebarItem} ${sidebar.active}` : `${sidebar.sidebarItem}`}>
               <Settings />
               <span>Profil</span>
             </a>
