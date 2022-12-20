@@ -2,7 +2,7 @@
 
 .main {
   background-color: var(--primaryBackground);
-  border-radius: 20px;
+  border-radius: $bigCorners;
   bottom: 1.5em;
   border-bottom: 0.5em solid var(--primaryBackground);
   border-top: 0.5em solid var(--primaryBackground);
@@ -183,15 +183,18 @@
 }
 
 .questionContainer {
-  margin-bottom: 2em;
-  max-width: $sm;
+  align-self: flex-start;
+  display: flex;
+  width: 100%;
 
   .inner {
-    padding: 2em 0 0;
+    padding: 1em 0 0 0;
+    width: 50%;
   }
 
   .question {
-    font-size: 21px;
+    font-size: 20px;
+    font-weight: normal;
     margin-bottom: 1.5em;
     margin-top: 0;
   }
@@ -199,12 +202,14 @@
   .answerContainer {
     align-items: flex-start;
     display: flex;
+    letter-spacing: 0.05em;
     line-height: 1.5;
     justify-content: space-between;
     margin-bottom: .5em;
 
     .answer {
-      max-width: 78%;
+      font-size: 16px;
+      max-width: 66%;
     }
 
     .pill {
@@ -252,13 +257,15 @@
 }
 
 .imageContainer {
-  //box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.075);
-  //-webkit-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.075);
-  //-moz-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.075);
-  border-radius: 18px;
+  //box-shadow: 0px 10px 30px 0px var(--shadow);
+  //-webkit-box-shadow: 0px 10px 30px 0px var(--shadow);
+  //-moz-box-shadow: 0px 10px 30px 0px var(--shadow);
+  border: 1px solid var(--secondaryLineColor);
+  border-radius: $bigCorners;
+  margin-right: 2em;
   max-width: $sm;
   overflow: hidden;
-  width: 100%;
+  width: 50%;
 }
 
 .questionContainer {
@@ -266,19 +273,66 @@
 }
 
 .activeQuestion {
-  display: block;
+  display: flex;
   opacity: 1;
   animation: fadeIn 250ms ease-in-out both;
 }
 
-.buttonsContainer {
+.bottomContainer {
+  align-items: center;
   display: flex;
-  justify-content: flex-start;
-  margin-top: 2em;
+  justify-content: space-between;
+  margin-top: 1em;
+  padding: 1em 0;
   width: 100%;
 
-  button {
+  .leftContainer {
+    align-self: center;
+    display: flex;
+  }
+
+  .questionIndex,
+  .speakerIcon {
+    align-items: center;
+    background-color: var(--secondaryBackground);
+    border: none;
+    border-radius: 4px;
+    color: var(--primaryFontColor);
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 14px;
+    height: 40px;
+    justify-content: center;
+    margin: 0;
     margin-right: 0.5em;
+    padding: 0 1.5em;
+  }
+
+  .questionIndex {
+    font-family: monospace;
+
+    &:hover {
+      cursor: default;
+    }
+  }
+
+  .speakerIcon {
+    padding: 0 1em;
+  }
+
+  .speakerIcon svg {
+    height: 1.1em;
+    width: 1.1em;
+  }
+
+  .buttonsContainer {
+    display: flex;
+    justify-content: flex-end;
+
+    button,
+    div {
+      margin-right: 0.5em;
+    }
   }
 }
 

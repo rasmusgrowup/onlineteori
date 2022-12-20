@@ -2,7 +2,7 @@
 
 .main {
 	background-color: var(--primaryBackground);
-	border-radius: 20px;
+	border-radius: $bigCorners;
 	bottom: 1.5em;
 	border-bottom: 0.5em solid var(--primaryBackground);
 	border-top: 0.5em solid var(--primaryBackground);
@@ -36,8 +36,10 @@
 .teoriNav {
 	background-color: var(--primaryBackground);
 	border-right: 1px solid var(--primaryLineColor);
-	height: calc(100% - 12em);
+	//border-radius: 0;
+	height: calc(100% - 6em);
 	max-width: $sidebarWidth;
+	overflow-y: scroll;
 	padding: 0.5em;
 	padding-right: 2em;
 	padding-top: 0;
@@ -49,10 +51,11 @@
 
 	@media (max-width: $m) {
 		border-right: transparent;
-		border-radius: 25px;
+		//border-radius: 25px;
 		height: auto;
 		left: 1em;
 		max-width: 100%;
+		overflow: initial;
 		padding: 0;
 		top: 5em;
 		width: calc(100% - 2em);
@@ -119,16 +122,21 @@
 		cursor: pointer;
 		display: flex;
 		font-weight: normal;
+		opacity: 0.25;
 
 		&:hover {
 			color: var(--pinkAccent);
+			opacity: 1;
 		}
 	}
 
 	.read {
 		align-items: center;
 		display: flex;
-		//text-decoration: line-through;
+
+		a {
+			opacity: 1;
+		}
 	}
 
 	.read::after {
@@ -149,6 +157,7 @@
 
 	.active {
 		color: var(--pinkAccent);
+		opacity: 1;
 	}
 
 	.testButton {
@@ -169,7 +178,7 @@
 	margin-top: 0;
 }
 
-.collapsed {
+.closed {
 	display: none;
 }
 

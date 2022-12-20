@@ -2,12 +2,12 @@
 
 .calendar {
   background-color: var(--secondaryBackground);
-  border-radius: 3 * $radius;
+  border-radius: $bigCorners;
   //height: 540px;
   padding: 1.5em;
   position: absolute;
   right: 1.5em;
-  top: 4.5em;
+  top: 4.25em;
   width: $sidebarWidth * 1.3;
 
   @media (max-width: $m) {

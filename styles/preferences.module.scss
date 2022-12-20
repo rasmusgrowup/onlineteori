@@ -14,7 +14,7 @@
   align-items: center;
   background-color: var(--secondaryBackground);
   border: none;
-  border-radius: 2 * $radius;
+  border-radius: $bigCorners;
   cursor: pointer;
   display: flex;
   justify-content: center;

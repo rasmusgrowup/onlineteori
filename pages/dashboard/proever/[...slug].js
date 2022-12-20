@@ -15,7 +15,9 @@ import header from '../../../styles/header.module.scss' // Styling import
 // Hygraph imports
 import { hygraphClient } from '../../../lib/hygraph'; // GraphCMS
 import { getSession } from 'next-auth/react'; // Session import
-import { gql } from 'graphql-request'; // gql
+import { gql } from 'graphql-request';
+import Speaker from "../../../components/Icons/Speaker";
+import SpeakerMute from "../../../components/Icons/SpeakerMute"; // gql
 
 const GetUserProfileById = gql`
 	query GetUserProfileById($id: ID!) {
@@ -35,6 +37,7 @@ const GetTestBySlug = gql`
 	    theoryTest: theoryTest(where: { slug: $slug }) {
 			id
             questions {
+                id
                 question
                 isCompleted
 				image {
@@ -99,12 +102,10 @@ function Test ({ question, i, index, questionsLength, active, completed, ...prop
         setShowResult(false)
     }
 
-    console.log(expectedAnswers)
-
     return (
         <div className={ active || completed ? `${style.questionContainer} ${style.activeQuestion}` : `${style.questionContainer}`} key={i}>
             <div className={style.imageContainer}>
-                <Image src={question.image.url} width={question.image.width} height={question.image.height} objectFit="cover" layout="responsive" />
+                <Image src={question.image.url} width="550" height="400" objectFit="cover" layout="responsive" />
             </div>
             <div className={style.inner}>
                 <h2 className={style.question}>{question.question}</h2>
@@ -133,7 +134,9 @@ function Test ({ question, i, index, questionsLength, active, completed, ...prop
                 ))}
                 { completed &&
                     <div>
-                        Rigtige svar: { expectedAnswers.map((e, i) => (<span key={i}>{e === true ? 'ja' : 'nej'}, </span>))}
+                        Rigtige svar: { expectedAnswers.map((e, i) => (
+                            <span key={i}>{e === true ? 'ja' : 'nej'}, </span>
+                        ))}
                     </div>
                 }
             </div>
@@ -145,6 +148,7 @@ export default function Page({ user, theoryTest }) {
     const [index, setIndex] = useState(0);
     const [result, setResult] = useState(theoryTest.questions.map(q => null))
     const [completed, setCompleted] = useState(null)
+    const [speaker, setSpeaker] = useState(true);
 
     return (
         <>
@@ -173,14 +177,28 @@ export default function Page({ user, theoryTest }) {
                         result={result}
                     />
                 ))}
-                <div className={style.buttonsContainer}>
-                    { index > 0 && index <= theoryTest.questions.length -1 && <button onClick={() => setIndex(index-1)} className={components.blueButton}>Forrige</button>}
-                    { index < theoryTest.questions.length -1 && <button onClick={() => setIndex(index+1)} className={components.blueButton}>Næste</button>}
-                    { index === theoryTest.questions.length -1 && <button onClick={() => {
-                        setIndex(index + 1);
-                        setCompleted(true)
-                    }} className={components.blueButton}>Vis resultat</button>}
-                </div>
+                {
+                    !completed && (
+                    <div className={style.bottomContainer}>
+                        <div className={style.leftContainer}>
+                            <div className={style.questionIndex}>{index + 1} / {theoryTest.questions.length}</div>
+                            <div className={style.speakerIcon} onClick={() => setSpeaker(!speaker)}>{ speaker ? <Speaker /> : <SpeakerMute />}</div>
+                        </div>
+                        <div className={style.buttonsContainer}>
+                            { index > 0 && index <= theoryTest.questions.length -1
+                                ? <button onClick={() => setIndex(index-1)} className={components.blueButton}>Forrige</button>
+                                : <div className={components.blueButton} style={{ opacity: 0.2}}>Forrige</div>
+                            }
+                            { index < theoryTest.questions.length -1 && <button onClick={() => setIndex(index+1)} className={components.blueButton}>Næste</button>
+                            }
+                            { index === theoryTest.questions.length -1 && <button onClick={() => {
+                                setIndex(index + 1);
+                                setCompleted(true)
+                            }} className={components.blueButton}>Afslut</button>}
+                        </div>
+                    </div>
+                    )
+                }
             </section>
         </>
     )

@@ -21,6 +21,7 @@ import Card from "../../../components/Icons/Card";
 import Email from "../../../components/Icons/Email";
 import Trashcan from "../../../components/Icons/Trashcan";
 import ChineseSign from "../../../components/Icons/ChineseSign";
+import SmsIcon from "../../../components/Icons/SmsIcon";
 
 // Smooth scroll
 import smoothscroll from 'smoothscroll-polyfill';
@@ -48,8 +49,8 @@ query GetUserProfileById($id: ID!) {
       city
       zip
     }
-    theoryProgress
     age
+    birthDate
     gender
   }
 }
@@ -80,7 +81,8 @@ export async function getServerSideProps(context) {
 
 const SmoothScroll = ({ user }) => {
   const router = useRouter()
-  const [checked, setChecked] = useState(true)
+  const [checkEmail, setCheckEmail] = useState(true)
+  const [checkSms, setCheckSms] = useState(true)
   const { handleSubmit, register } = useForm({ defaultValues: user });
 
   const onSubmit = async ({ name, username }) => {
@@ -120,6 +122,7 @@ const SmoothScroll = ({ user }) => {
             <Link href="#sub"><a><Card />Abonnement</a></Link>
             <Link href="#lang"><a><ChineseSign />Sprog</a></Link>
             <Link href="#emails"><a><Email />Emails</a></Link>
+            <Link href="#sms"><a><SmsIcon />SMS</a></Link>
             <Link href="#delete"><a><Trashcan />Slet</a></Link>
           </ul>
         </nav>
@@ -131,9 +134,9 @@ const SmoothScroll = ({ user }) => {
               <button className={style.pencil}><Pencil /></button>
             </header>
             <div className={style.name}>
-              <p>{user.name}</p>
-              <p>@{user.username}</p>
-              <p>{user.age} år, {user.gender}</p>
+              <p>Navn: {user.name}</p>
+              <p>Fødselsdato: {user.birthDate}</p>
+              <p>Køn: {user.gender}</p>
             </div>
           </section>
           <section className={style.section} id="contact">
@@ -142,8 +145,8 @@ const SmoothScroll = ({ user }) => {
               <button className={style.pencil}><Pencil /></button>
             </header>
             <div className={style.name}>
-              <p>{user.email}</p>
-              <p>+45 {user.phone}</p>
+              <p>Email: {user.email}</p>
+              <p>Tlf.: +45 {user.phone}</p>
             </div>
           </section>
           <section className={style.section} id="address">
@@ -151,7 +154,10 @@ const SmoothScroll = ({ user }) => {
               <h3>Adresse</h3>
               <button className={style.pencil}><Pencil /></button>
             </header>
-            <div className={style.address}>{user.address.street} {user.address.floor}, {user.address.city} {user.address.zip}</div>
+            <div className={style.address}>
+              <p>{user.address.street} {user.address.floor}</p>
+              <p>{user.address.city} {user.address.zip}</p>
+            </div>
           </section>
           <section className={style.section} id="id">
             <header className={style.header}>
@@ -196,12 +202,22 @@ const SmoothScroll = ({ user }) => {
               <h3>Emails</h3>
             </header>
             <form>
-              <input type='checkbox' name='emails' defaultChecked={checked} onChange={() => setChecked(!checked)}/>
+              <input type='checkbox' name='emails' defaultChecked={checkEmail} onChange={() => setCheckEmail(!checkEmail)}/>
               <label>Jeg ønsker at modtage email markedsføring fra Onlineteori</label>
             </form>
-            <p className={style.explainor}>Dit valg af sprog afgør, hvilket sprog du vil
-              benytte dig af i programmet her. Det gælder både når du tager prøver, læser i teoribogen og
-              på selve interfacet.</p>
+            <p className={style.explainor}>Markedsføring pr. email kan inkludere tilbud, nyheder m.m.</p>
+          </section>
+          <section className={style.section} id="sms">
+            <header className={style.header}>
+              <h3>SMS</h3>
+            </header>
+            <form>
+              <input type='checkbox' name='sms' defaultChecked={checkSms} onChange={() => setCheckSms(!checkSms)}/>
+              <label>Påmind mig med en SMS når der opstår nye beskeder, notifikationer og opgaver</label>
+            </form>
+            <p className={style.explainor}>Vi sender dig en besked på en SMS, når der opstår ændringer i dit skema,
+              du liver tildelt nye opgaver, du får nye notifikationer, eller når din kørelære gerne vil i
+              kontakt med dig.</p>
           </section>
           <section className={style.section} id='delete'>
             <header className={style.header}>

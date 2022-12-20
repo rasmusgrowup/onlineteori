@@ -34,6 +34,7 @@ a {
   --secondaryBackground: rgb(248, 248, 248);
   --primaryLineColor: rgb(232, 232, 232);
   --primaryFontColor: rgb(0, 6, 30);
+  --secondaryLineColor: rgb(4, 5, 9);
   --primaryFontColorRgb: 1, 11, 54;
   --primaryFontColorInverted: rgb(255, 255, 255);
   --primaryButtonBg: rgb(240, 240, 240);
@@ -51,8 +52,9 @@ a {
   --hoverLightBtn: rgb(244, 244, 244);
   --shadow: rgba(0,0,0,0.1);
   --darkmode: rgb(1, 11, 54);
-  --gradientTop: #fc00a4;
+  --gradientTop: #e30382;
   --gradientBottom: #001d9f;
+  /*--gradientBottom: rgb(102, 0, 255);*/
   --altBackground: rgb(240, 240, 240);
 }
 

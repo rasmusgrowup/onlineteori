@@ -32,7 +32,6 @@ const GetUserProfileById = gql`
 			userPic {
 				url
 			}
-			theoryProgress
 			pages {
 				slug
 			}
@@ -52,26 +51,6 @@ const GetTheoryBook = gql`
 				id
 				title
 				slug
-				pages {
-					__typename
-					content { html }
-					title
-					slug
-				}
-				stopTests {
-					__typename
-					title
-					slug
-					questions {
-						question
-						isCompleted
-						answers {
-							answer
-							userAnswer
-							expectedAnswer
-						}
-					}
-				}
 				contents {
 					... on Page {
 						id
@@ -284,8 +263,6 @@ export default function Page({ user, theoryBook, page, stopTest }) {
 			updatePoints({points})
 		}
 	}, [])
-
-	console.log(userPoints)
 
 	return (
 		<>

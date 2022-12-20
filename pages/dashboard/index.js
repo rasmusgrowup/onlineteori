@@ -84,9 +84,9 @@ export async function getServerSideProps(context) {
 
 const PieChart = styled.div`
   --p: ${props => props.percent || "0"};
-  --w: 100px;
+  --w: 85px;
   --c: var(--greenAccent);
-  --b: 8px;
+  --b: 7px;
   width: var(--w);
   height: var(--w);
   aspect-ratio: 1;
@@ -129,11 +129,13 @@ export default function Dashboard({ user, theoryBook }) {
   const [selectedAnswer, setSelectedAnswer] = useState(null)
   const [contents, setContents] = useState(theoryBook.parts.map((p) => p.contents).flat())
   const [userPages, setUserPages] = useState([...user.pages])
-  const [percent, setPercent] = useState(Math.round((100 / contents.length) * userPages.length))
-  const [points, setPoints] = useState(user.point)
+  const [percent, setPercent] = useState(null)
+  const [points, setPoints] = useState(null)
 
   useEffect(() => {
     setLoaded(true)
+    setPercent(Math.round((100 / contents.length) * userPages.length))
+    setPoints(user.point)
   }, [])
 
   console.log(percent)

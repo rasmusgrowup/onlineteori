@@ -1,5 +1,6 @@
 import Link from 'next/link'; // import link component
 import sidebar from '../styles/sidebar.module.scss'; // styling specific to header
+import components from '../styles/components.module.scss' // styling for components
 
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -10,8 +11,10 @@ import { useSession, signIn, signOut } from "next-auth/react";
 // Import Icons for menu
 import Overblik from '../components/Icons/Overblik';
 import Settings from '../components/Icons/Settings';
+import Help from "./Icons/Help";
 import Teori from '../components/Icons/Teori';
 import Tests from '../components/Icons/Tests';
+import Calendar from "./Icons/Calendar";
 import Chat from '../components/Icons/Chat';
 import SignOut from '../components/Icons/SignOut';
 import MenuIcon from '../components/Icons/MenuIcon';
@@ -46,16 +49,23 @@ function BackendSidebar({ displayMenu }) {
               <span>Prøver</span>
             </a>
           </Link>
+          <Link href='/dashboard' passHref>
+            <a className={router.pathname === '/dashboard/calendar' ? `${sidebar.sidebarItem} ${sidebar.active}` : `${sidebar.sidebarItem}`}>
+              <Calendar />
+              <span>Skema</span>
+              <div className={components.betaLabel}>beta</div>
+            </a>
+          </Link>
           <Link href='/dashboard/profile' passHref>
             <a className={router.pathname === '/dashboard/profile' ? `${sidebar.sidebarItem} ${sidebar.active}` : `${sidebar.sidebarItem}`}>
               <Settings />
               <span>Profil</span>
             </a>
           </Link>
-          <Link href='/dashboard' passHref>
-            <a className={sidebar.sidebarItem}>
-              <Chat />
-              <span>Support</span>
+          <Link href='/dashboard/support' passHref>
+            <a className={router.pathname === '/dashboard/support' ? `${sidebar.sidebarItem} ${sidebar.active}` : `${sidebar.sidebarItem}`}>
+              <Help />
+              <span>Hjælp</span>
             </a>
           </Link>
         </div>

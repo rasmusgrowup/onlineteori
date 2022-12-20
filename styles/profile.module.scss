@@ -2,7 +2,7 @@
 
 .main {
   background-color: var(--primaryBackground);
-  border-radius: 20px;
+  border-radius: $bigCorners;
   bottom: 1.5em;
   border-bottom: 0.5em solid var(--primaryBackground);
   border-top: 0.5em solid var(--primaryBackground);
@@ -119,6 +119,10 @@
 .section {
   scroll-margin-top: 6 * $radius;
   margin-bottom: 3em;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 }
 
 .section .header {
@@ -154,6 +158,10 @@
   width: 3 * $radius;
 } */
 
+.section form input {
+  cursor: pointer;
+}
+
 .section form label {
   margin-left: 0.5em;
 }
@@ -170,7 +178,7 @@
 .name,
 .school {
   background-color: var(--secondaryBackground);
-  border-radius: 3 * $radius;
+  border-radius: $bigCorners;
   color: var(--pinkAccent);
   font-family: monospace;
   padding: 1.5em;

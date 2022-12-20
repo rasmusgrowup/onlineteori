@@ -1,0 +1,46 @@
+@import "sizes";
+
+.container {
+  background-color: var(--secondaryBackground);
+  border-radius: 3 * $radius;
+  //height: 540px;
+  padding: 1.5em;
+  position: absolute;
+  right: 1.5em;
+  top: 4.25em;
+  width: $sidebarWidth * 1.3;
+
+  @media (max-width: $m) {
+    margin-top: 1em;
+    position: relative;
+    right: auto;
+    top: 0;
+    width: 100%;
+  }
+}
+
+.title {
+  border-bottom: 1px dashed var(--primaryLineColor);
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-bottom: 0;
+  padding-bottom: 0.5em;
+}
+
+.list {
+  list-style: none;
+  //font-family: monospace;
+  margin: 0;
+  padding: 0;
+
+  .unavailable {opacity: 0.1}
+
+  .li {
+    opacity: 1;
+  }
+
+  .li,
+  .unavailable {
+    margin: 1em auto;
+  }
+}

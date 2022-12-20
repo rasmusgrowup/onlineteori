@@ -9,7 +9,7 @@ import components from "../../../styles/components.module.scss";
 import header from "../../../styles/header.module.scss";
 
 import { getSession } from 'next-auth/react'; // Session import
-import { useState } from 'react'; // useState() import
+import { useEffect, useState } from 'react'; // useState() import
 
 // Hygraph imports
 import { hygraphClient } from '../../../lib/hygraph'; // GraphCMS
@@ -25,7 +25,6 @@ const GetUserProfileById = gql`
       userPic {
         url
       }
-      theoryProgress
       pages {
       	slug
 	  }
@@ -124,7 +123,7 @@ export async function getServerSideProps(context) {
 }
 
 function Content({ content }) {
-	const [page, setPage] = useState(content.parts[0].pages[0]);
+	const [page, setPage] = useState(content.parts[0].contents[0]);
 
 	return (
 		<div className={style.chapterContent}>
@@ -138,7 +137,6 @@ function Content({ content }) {
 export default function Teori({ user, theoryBook }) {
 	const [parts, setParts] = useState([...theoryBook.parts])
 	const [userPages, setUserPages] = useState([...user.pages])
-	const [percent, setPercent] = useState(Math.round((100 / parts.length)*userPages.length))
 
 	return (
 		<>

@@ -2,19 +2,22 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import User from '../../../components/User'
+import AvailableTests from "../../../components/AvailableTests";
 import Sidebar from '../../../components/Sidebar'
 import Preferences from '../../../components/Preferences'
 
 import style from '../../../styles/test.module.scss'
 import header from '../../../styles/header.module.scss'
 
+import {useRouter} from "next/router";
 import Plus from '../../../public/gradients/plus.png' // Big plus gradient icon
 import { motion } from "framer-motion" // Animation library
 
 // Hygraph imports
 import { getSession } from 'next-auth/react'; // Session
 import { hygraphClient } from '../../../lib/hygraph'; // GraphCMS
-import { gql } from 'graphql-request'; // gql
+import { gql } from 'graphql-request';
+import {useState} from "react"; // gql
 
 const GetUserProfileById = gql`
   query GetUserProfileById($id: ID!) {
@@ -28,6 +31,16 @@ const GetUserProfileById = gql`
     }
   }
 `;
+
+const GetAvailableTests = gql `
+  query availableTests {
+    theoryTests {
+      id
+      slug
+      title
+    }
+  }
+`
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
@@ -45,24 +58,30 @@ export async function getServerSideProps(context) {
     id: session.userId,
   });
 
+  const { theoryTests } = await hygraphClient.request(GetAvailableTests, {
+    id: session.userId,
+  });
+
   return {
     props: {
       user,
+      theoryTests
     },
   };
 }
 
-function NewTest() {
+function NewTest({ test }) {
+  const router = useRouter()
+  const [slug, setSlug] = useState(test.slug)
+
   return (
     <motion.div whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }} className={style.newTest}>
-      <Link href="proever/test-af-teoriprove">
-        <a>
-          <p><strong>Start en ny prøve.</strong> Du har taget 10 ud af 15 mulige prøver.</p>
-          <div className={style.plusContainer}>
-            <Image src={Plus} layout='responsive' quality='100' priority='true'/>
-          </div>
-        </a>
-      </Link>
+      <div onClick={() => router.push(`proever/${slug}`)}>
+        <p><strong>Start en ny prøve.</strong> Du har taget 10 ud af 15 mulige prøver.</p>
+        <div className={style.plusContainer}>
+          <Image src={Plus} layout='responsive' quality='100' priority='true'/>
+        </div>
+      </div>
     </motion.div>
   )
 }
@@ -80,7 +99,7 @@ const proever = [
   ['Ikke bestået', '73/100', '11/10/22']
 ];
 
-export default function Proever({ user }) {
+export default function Proever({ user, theoryTests }) {
 	return (
     <>
       <Sidebar />
@@ -91,7 +110,7 @@ export default function Proever({ user }) {
         </header>
         <div className={style.grid}>
           <div className={style.col1}>
-            <NewTest />
+            <NewTest test={theoryTests[0]} />
             <div className={style.testContainer}>
               <h2>Seneste 5 prøver</h2>
               <div className={style.testList}>
@@ -105,6 +124,7 @@ export default function Proever({ user }) {
               </div>
             </div>
           </div>
+          {/*
           <div className={style.col2}>
             <div className={style.recommendations}>
               <div className={style.recommendation}>
@@ -120,8 +140,9 @@ export default function Proever({ user }) {
                 <p>Vi anbefaler at du består fem test i streg, før du melder dig til en køreprøve.</p>
               </div>
             </div>
-          </div>
+          </div>*/}
         </div>
+        <AvailableTests tests={theoryTests} />
       </section>
     </>
   )

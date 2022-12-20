@@ -11,7 +11,7 @@
 }
 
 .gradient {
-	background: -webkit-linear-gradient(var(--gradientTop), var(--gradientBottom));
+	background: -webkit-linear-gradient(180deg, var(--gradientBottom), var(--gradientTop));
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	display: block;
@@ -28,4 +28,9 @@
 		cursor: pointer;
 		text-decoration: underline;
 	}
+}
+
+.statusText {
+	font-size: 18px;
+	font-family: monospace;
 }

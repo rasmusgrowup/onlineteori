@@ -6,7 +6,7 @@
 }
 
 .imageContainer {
-	border-radius: 3 * $radius;
+	border-radius: $bigCorners;
 	height: 10 * $radius;
 	overflow: hidden;
 	width: 10 * $radius;
